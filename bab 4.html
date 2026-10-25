@@ -4,244 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Materi & Uji Pemahaman Bab 4 - Pengolahan Data Aplikasi</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <style>
-        :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #3498db;
-            --accent-color: #e74c3c;
-            --bg-color: #f4f7f6;
-            --card-bg: #ffffff;
-            --border-color: #cbd5e1;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: #333;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 900px;
-            background: var(--card-bg);
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            border: 1px solid var(--border-color);
-        }
-
-        .header {
-            text-align: center;
-            border-bottom: 2px solid var(--primary-color);
-            padding-bottom: 20px;
-            margin-bottom: 30px;
-        }
-
-        .header h1 {
-            color: var(--primary-color);
-            margin: 0 0 8px 0;
-            font-size: 1.8rem;
-        }
-
-        .header p {
-            color: #64748b;
-            margin: 0;
-            font-size: 0.95rem;
-        }
-
-        /* Styling Materi */
-        .material-section {
-            background: #f8fafc;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 25px;
-            margin-bottom: 40px;
-        }
-
-        .material-section h2 {
-            color: var(--primary-color);
-            font-size: 1.4rem;
-            border-bottom: 2px solid var(--secondary-color);
-            padding-bottom: 8px;
-            margin-top: 0;
-        }
-
-        .material-section h3 {
-            color: #34495e;
-            font-size: 1.1rem;
-            margin-top: 20px;
-        }
-
-        .material-section p, .material-section li {
-            line-height: 1.6;
-            color: #475569;
-        }
-
-        table.material-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 15px 0;
-            font-size: 0.95rem;
-        }
-
-        table.material-table th, table.material-table td {
-            padding: 10px 12px;
-            border: 1px solid #cbd5e1;
-            text-align: left;
-        }
-
-        table.material-table th {
-            background-color: #e2e8f0;
-            color: var(--primary-color);
-        }
-
-        /* Area Form Ujian */
-        .exam-section {
-            border-top: 3px dashed var(--border-color);
-            padding-top: 30px;
-        }
-
-        .identity-card {
-            background-color: #f1f5f9;
-            border: 1px solid var(--border-color);
-            border-left: 5px solid var(--secondary-color);
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 30px;
-        }
-
-        .identity-card h3 {
-            margin-top: 0;
-            color: var(--primary-color);
-            font-size: 1.1rem;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: 600;
-            color: #475569;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 10px 12px;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: var(--secondary-color);
-            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
-        }
-
-        .form-control:disabled {
-            background-color: #e2e8f0;
-            color: #64748b;
-            cursor: not-allowed;
-            font-weight: bold;
-        }
-
-        .status-badge {
-            display: inline-block;
-            font-size: 0.8rem;
-            padding: 4px 8px;
-            border-radius: 4px;
-            margin-top: 5px;
-            font-weight: bold;
-        }
-
+        :root { --primary-color: #2c3e50; --secondary-color: #3498db; --bg-color: #f4f7f6; --card-bg: #ffffff; --border-color: #cbd5e1; }
+        * { box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg-color); color: #333; margin: 0; padding: 20px; display: flex; justify-content: center; }
+        .container { width: 100%; max-width: 900px; background: var(--card-bg); padding: 40px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border: 1px solid var(--border-color); }
+        .header { text-align: center; border-bottom: 2px solid var(--primary-color); padding-bottom: 20px; margin-bottom: 30px; }
+        .header h1 { color: var(--primary-color); margin: 0 0 8px 0; font-size: 1.8rem; }
+        .material-section { background: #f8fafc; border: 1px solid var(--border-color); border-radius: 8px; padding: 25px; margin-bottom: 40px; }
+        .material-section h2 { color: var(--primary-color); font-size: 1.4rem; border-bottom: 2px solid var(--secondary-color); padding-bottom: 8px; margin-top: 0; }
+        .material-section p { line-height: 1.6; color: #475569; }
+        .exam-section { border-top: 3px dashed var(--border-color); padding-top: 30px; }
+        .identity-card { background-color: #f1f5f9; border: 1px solid var(--border-color); border-left: 5px solid var(--secondary-color); padding: 20px; border-radius: 8px; margin-bottom: 30px; }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: 600; color: #475569; }
+        .form-control { width: 100%; padding: 10px 12px; border: 1px solid var(--border-color); border-radius: 6px; font-size: 1rem; }
+        .form-control:disabled { background-color: #e2e8f0; color: #64748b; font-weight: bold; }
+        .status-badge { display: inline-block; font-size: 0.8rem; padding: 4px 8px; border-radius: 4px; margin-top: 5px; font-weight: bold; }
         .badge-unlocked { background: #fef3c7; color: #92400e; }
         .badge-locked { background: #dcfce7; color: #166534; }
-
-        .question-card {
-            background: #ffffff;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 25px;
-        }
-
-        .question-title {
-            font-weight: 600;
-            color: var(--primary-color);
-            margin-bottom: 10px;
-            font-size: 1.05rem;
-            line-height: 1.5;
-        }
-
-        textarea.essay-input {
-            width: 100%;
-            min-height: 100px;
-            padding: 10px;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            resize: vertical;
-            font-family: inherit;
-            -webkit-user-select: text !important;
-            user-select: text !important;
-        }
-
-        .action-area {
-            display: flex;
-            gap: 15px;
-            justify-content: flex-end;
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid var(--border-color);
-        }
-
-        .btn {
-            padding: 12px 24px;
-            font-size: 1rem;
-            font-weight: 600;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: background 0.2s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
+        .question-card { background: #ffffff; border: 1px solid var(--border-color); border-radius: 8px; padding: 20px; margin-bottom: 25px; }
+        .question-title { font-weight: 600; color: var(--primary-color); margin-bottom: 10px; font-size: 1.05rem; }
+        textarea.essay-input { width: 100%; min-height: 100px; padding: 10px; border: 1px solid var(--border-color); border-radius: 6px; resize: vertical; -webkit-user-select: text !important; user-select: text !important; }
+        .action-area { display: flex; gap: 15px; justify-content: flex-end; margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--border-color); }
+        .btn { padding: 12px 24px; font-size: 1rem; font-weight: 600; border: none; border-radius: 6px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; }
         .btn-primary { background-color: #2563eb; color: white; }
-        .btn-primary:hover { background-color: #1d4ed8; }
-
         .btn-success { background-color: #16a34a; color: white; }
-        .btn-success:hover { background-color: #15803d; }
-
-        .alert-box {
-            display: none;
-            padding: 15px;
-            border-radius: 6px;
-            margin-bottom: 20px;
-            font-weight: 500;
-        }
+        .alert-box { display: none; padding: 15px; border-radius: 6px; margin-bottom: 20px; font-weight: 500; }
         .alert-success { background-color: #dcfce7; color: #15803d; border: 1px solid #86efac; }
         .alert-warning { background-color: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
-
-        @media print {
-            body { background: white; padding: 0; }
-            .container { box-shadow: none; border: none; max-width: 100%; padding: 0; }
-            .action-area, .status-badge, .btn-lock, .material-section { display: none !important; }
-            textarea.essay-input { border: none; border-bottom: 1px solid #000; border-radius: 0; }
-            .identity-card { background: none; border: 1px solid #000; }
-        }
     </style>
 </head>
 <body>
@@ -252,130 +44,44 @@
         <p>Informatika Kelas XI SMA/MA — Kurikulum Merdeka (Fase F)</p>
     </div>
 
-    <!-- BAGIAN MATERI PEMBELAJARAN BAB IV -->
     <div class="material-section">
         <h2>RINGKASAN MATERI: PENGOLAHAN DATA MENGGUNAKAN APLIKASI (SPREADSHEET)</h2>
-        
-        <h3>4.1 Mengenal Spreadsheet</h3>
-        <p>Perangkat lunak lembar kerja (spreadsheet) seperti Microsoft Excel atau Google Sheets adalah alat bantu komputasi utama untuk merekam, menghitung, menyaring, dan menganalisis data dalam bentuk tabel baris dan kolom secara efisien[span_1](start_span)[span_1](end_span).</p>
-
-        <h3>4.2 Struktur Dasar Sel dan Rentang (Range)</h3>
-        <p>Lembar kerja tersusun atas perpotongan baris dan kolom yang disebut **Sel** (contoh: sel `A1`). Kumpulan beberapa sel yang berdekatan disebut **Rentang/Range** (contoh: `A1:B10`)[span_2](start_span)[span_2](end_span).</p>
-
-        <h3>4.3 Rumus (Formula) dan Fungsi Dasar</h3>
-        <p>Perhitungan dalam spreadsheet dilakukan menggunakan rumus (diawali tanda `=`) atau fungsi bawaan seperti `SUM`, `AVERAGE`, `MAX`, `MIN`, dan `COUNT` untuk mengkalkulasi data dalam jumlah besar[span_3](start_span)[span_3](end_span).</p>
-
-        <h3>4.4 Pengurutan (Sorting) dan Penyaringan (Filtering)</h3>
-        <p>Fitur *Sorting* digunakan untuk mengurutkan data berdasarkan kriteria tertentu, sedangkan *Filtering* berfungsi menyembunyikan data yang tidak diperlukan guna fokus pada kriteria spesifik[span_4](start_span)[span_4](end_span).</p>
+        <h3>4.1 Struktur Sel, Rentang, & Rumus</h3>
+        <p>Spreadsheet tersusun atas Sel (perpotongan kolom & baris seperti `A1`), Range (kumpulan sel seperti `A1:B10`), serta rumus otomatis yang diawali tanda `=`[span_73](start_span)[span_73](end_span).</p>
+        <h3>4.2 Fitur Pengurutan dan Penyaringan</h3>
+        <p>Sorting digunakan untuk mengurutkan nilai (A-Z/Z-A), sedangkan Filtering menyembunyikan data di luar kriteria analisis[span_74](start_span)[span_74](end_span).</p>
     </div>
 
-    <!-- BAGIAN UJIAN / UJI PEMAHAMAN (10 SOAL ESSAY) -->
     <div class="exam-section">
         <div class="header" style="border:none; margin-bottom:20px;">
             <h2 style="color:var(--primary-color);">UJI PEMAHAMAN ESSAY (10 SOAL)</h2>
-            <p>Jawablah 10 pertanyaan berikut secara mandiri dan kritis. Dilarang melakukan salin-tempel (copy-paste).</p>
+            <p>Jawablah 10 pertanyaan berikut secara mandiri dan kritis. Dilarang melakukan salin-tempel (copy-paste)[span_75](start_span)[span_75](end_span).</p>
         </div>
 
         <div id="statusAlert" class="alert-box"></div>
 
-        <!-- IDENTITAS SISWA -->
         <div class="identity-card">
             <h3>Identitas Peserta Didik</h3>
-            <div class="form-group">
-                <label for="studentName">Nama Lengkap Siswa:</label>
-                <input type="text" id="studentName" class="form-control" placeholder="Ketik nama lengkap Anda..." oninput="checkIdentityInputs()">
-            </div>
-            <div class="form-group">
-                <label for="studentClass">Kelas / Rombel:</label>
-                <input type="text" id="studentClass" class="form-control" placeholder="Contoh: XI IPA 1 / XI-F3" oninput="checkIdentityInputs()">
-            </div>
-            <div>
-                Status Identitas: 
-                <span id="lockBadge" class="status-badge badge-unlocked">Belum Terkunci</span>
-                <button type="button" class="btn-lock" id="btnManualLock" onclick="lockIdentity()" style="margin-left: 10px; cursor:pointer;" disabled>Kunci Identitas</button>
-            </div>
+            <div class="form-group"><label>Nama Lengkap Siswa:</label><input type="text" id="studentName" class="form-control" placeholder="Ketik nama..." oninput="checkIdentityInputs()"></div>
+            <div class="form-group"><label>Kelas / Rombel:</label><input type="text" id="studentClass" class="form-control" placeholder="Contoh: XI IPA 1" oninput="checkIdentityInputs()"></div>
+            <div>Status Identitas: <span id="lockBadge" class="status-badge badge-unlocked">Belum Terkunci</span> <button type="button" id="btnManualLock" onclick="lockIdentity()" style="margin-left: 10px; cursor:pointer;" disabled>Kunci Identitas</button></div>
         </div>
 
-        <!-- FORM 10 SOAL ESSAY -->
         <form id="quizForm">
-            <!-- Soal 1 -->
-            <div class="question-card">
-                <div class="question-title">1. Peran Aplikasi Spreadsheet:</div>
-                <p style="color: #475569; font-size: 0.95rem; margin-top:0;">Mengapa penggunaan perangkat lunak spreadsheet jauh lebih efektif dibandingkan perhitungan manual saat mengolah ratusan data?</p>
-                <textarea class="essay-input" name="q1" placeholder="Tuliskan jawaban Anda..." required></textarea>
-            </div>
+            <div class="question-card"><div class="question-title">1. Peran Aplikasi Spreadsheet:</div><p style="color: #475569; font-size: 0.95rem;">Mengapa spreadsheet jauh lebih efektif dibanding perhitungan manual saat mengolah ratusan data[span_76](start_span)[span_76](end_span)?</p><textarea class="essay-input" name="q1" placeholder="Tuliskan jawaban Anda..." required></textarea></div>
+            <div class="question-card"><div class="question-title">2. Konsep Sel dan Alamat Sel:</div><p style="color: #475569; font-size: 0.95rem;">Jelaskan apa yang dimaksud sel dan bagaimana penamaan alamat sel seperti `C5` terbentuk[span_77](start_span)[span_77](end_span).</p><textarea class="essay-input" name="q2" placeholder="Tuliskan jawaban Anda..." required></textarea></div>
+            <div class="question-card"><div class="question-title">3. Penggunaan Rentang (Range):</div><p style="color: #475569; font-size: 0.95rem;">Apa fungsi penulisan rentang sel (range) seperti `B2:B20` dalam sebuah rumus matematika[span_78](start_span)[span_78](end_span)?</p><textarea class="essay-input" name="q3" placeholder="Tuliskan jawaban Anda..." required></textarea></div>
+            <div class="question-card"><div class="question-title">4. Fungsi Dasar SUM dan AVERAGE:</div><p style="color: #475569; font-size: 0.95rem;">Jelaskan perbedaan fungsi `SUM` dan `AVERAGE` beserta contoh skenario di kelas[span_79](start_span)[span_79](end_span).</p><textarea class="essay-input" name="q4" placeholder="Tuliskan jawaban Anda..." required></textarea></div>
+            <div class="question-card"><div class="question-title">5. Penulisan Formula/Rumus Dasar:</div><p style="color: #475569; font-size: 0.95rem;">Mengapa penulisan rumus di spreadsheet harus diawali tanda sama dengan (`=`)[span_80](start_span)[span_80](end_span)?</p><textarea class="essay-input" name="q5" placeholder="Tuliskan jawaban Anda..." required></textarea></div>
+            <div class="question-card"><div class="question-title">6. Fitur Pengurutan (Sorting):</div><p style="color: #475569; font-size: 0.95rem;">Bagaimana fitur *sorting* membantu analis menemukan nilai tertinggi/terendah dengan cepat[span_81](start_span)[span_81](end_span)?</p><textarea class="essay-input" name="q6" placeholder="Tuliskan jawaban Anda..." required></textarea></div>
+            <div class="question-card"><div class="question-title">7. Fitur Penyaringan (Filtering):</div><p style="color: #475569; font-size: 0.95rem;">Jelaskan fungsi fitur *filter* pada spreadsheet dalam menyembunyikan data yang tidak relevan[span_82](start_span)[span_82](end_span).</p><textarea class="essay-input" name="q7" placeholder="Tuliskan jawaban Anda..." required></textarea></div>
+            <div class="question-card"><div class="question-title">8. Penanganan Data Kosong dan Duplikat:</div><p style="color: #475569; font-size: 0.95rem;">Mengapa keberadaan data kosong atau duplikat dapat merusak keakuratan hasil analisis[span_83](start_span)[span_83](end_span)?</p><textarea class="essay-input" name="q8" placeholder="Tuliskan jawaban Anda..." required></textarea></div>
+            <div class="question-card"><div class="question-title">9. Studi Kasus Rekapitulasi Nilai:</div><p style="color: #475569; font-size: 0.95rem;">Jika data nilai siswa ada di `D2:D31`, rumus apa saja untuk mencari total, rata-rata, & maksimal[span_84](start_span)[span_84](end_span)?</p><textarea class="essay-input" name="q9" placeholder="Tuliskan jawaban Anda..." required></textarea></div>
+            <div class="question-card"><div class="question-title">10. Otomatisasi Perhitungan (Cell Referencing):</div><p style="color: #475569; font-size: 0.95rem;">Jelaskan keunggulan mereferensikan alamat sel (`=A1*B1`) dibanding mengetik angka langsung (`=100*50`)[span_85](start_span)[span_85](end_span)!</p><textarea class="essay-input" name="q10" placeholder="Tuliskan jawaban Anda..." required></textarea></div>
 
-            <!-- Soal 2 -->
-            <div class="question-card">
-                <div class="question-title">2. Konsep Sel dan Alamat Sel:</div>
-                <p style="color: #475569; font-size: 0.95rem; margin-top:0;">Jelaskan apa yang dimaksud dengan perpotongan antara baris dan kolom (sel), serta bagaimana penamaan alamat sel seperti `C5` terbentuk.</p>
-                <textarea class="essay-input" name="q2" placeholder="Tuliskan jawaban Anda..." required></textarea>
-            </div>
-
-            <!-- Soal 3 -->
-            <div class="question-card">
-                <div class="question-title">3. Penggunaan Rentang (Range):</div>
-                <p style="color: #475569; font-size: 0.95rem; margin-top:0;">Apa fungsi penulisan rentang sel (range) seperti `B2:B20` dalam sebuah rumus matematika spreadsheet?</p>
-                <textarea class="essay-input" name="q3" placeholder="Tuliskan jawaban Anda..." required></textarea>
-            </div>
-
-            <!-- Soal 4 -->
-            <div class="question-card">
-                <div class="question-title">4. Fungsi Dasar SUM dan AVERAGE:</div>
-                <p style="color: #475569; font-size: 0.95rem; margin-top:0;">Jelaskan perbedaan fungsi `SUM` dan `AVERAGE`. Berikan contoh skenario nyata di kelas di mana kedua fungsi ini sangat dibutuhkan.</p>
-                <textarea class="essay-input" name="q4" placeholder="Tuliskan jawaban Anda..." required></textarea>
-            </div>
-
-            <!-- Soal 5 -->
-            <div class="question-card">
-                <div class="question-title">5. Penulisan Formula/Rumus Dasar:</div>
-                <p style="color: #475569; font-size: 0.95rem; margin-top:0;">Mengapa setiap penulisan rumus atau fungsi di dalam spreadsheet harus diawali dengan tanda sama dengan (`=`)? Apa yang terjadi jika tanda tersebut diabaikan?</p>
-                <textarea class="essay-input" name="q5" placeholder="Tuliskan jawaban Anda..." required></textarea>
-            </div>
-
-            <!-- Soal 6 -->
-            <div class="question-card">
-                <div class="question-title">6. Fitur Pengurutan (Sorting):</div>
-                <p style="color: #475569; font-size: 0.95rem; margin-top:0;">Bagaimana fitur *sorting* (pengurutan data) membantu analis data menemukan nilai ekstrem (tertinggi atau terendah) dengan cepat dari sebuah tabel besar?</p>
-                <textarea class="essay-input" name="q6" placeholder="Tuliskan jawaban Anda..." required></textarea>
-            </div>
-
-            <!-- Soal 7 -->
-            <div class="question-card">
-                <div class="question-title">7. Fitur Penyaringan (Filtering):</div>
-                <p style="color: #475569; font-size: 0.95rem; margin-top:0;">Jelaskan fungsi dari fitur *filter* pada spreadsheet dan berikan contoh bagaimana fitur ini menyembunyikan data yang tidak relevan.</p>
-                <textarea class="essay-input" name="q7" placeholder="Tuliskan jawaban Anda..." required></textarea>
-            </div>
-
-            <!-- Soal 8 -->
-            <div class="question-card">
-                <div class="question-title">8. Penanganan Data Kosong dan Duplikat:</div>
-                <p style="color: #475569; font-size: 0.95rem; margin-top:0;">Mengapa keberadaan data kosong atau data ganda (duplikat) di dalam spreadsheet dapat merusak keakuratan hasil analisis?</p>
-                <textarea class="essay-input" name="q8" placeholder="Tuliskan jawaban Anda..." required></textarea>
-            </div>
-
-            <!-- Soal 9 -->
-            <div class="question-card">
-                <div class="question-title">9. Studi Kasus Rekapitulasi Nilai:</div>
-                <p style="color: #475569; font-size: 0.95rem; margin-top:0;">Jika Anda memiliki daftar nilai 30 siswa pada sel `D2:D31`, rumus fungsi apa saja yang harus Anda ketik untuk mencari total nilai, rata-rata, serta nilai maksimal kelas tersebut?</p>
-                <textarea class="essay-input" name="q9" placeholder="Tuliskan jawaban Anda..." required></textarea>
-            </div>
-
-            <!-- Soal 10 -->
-            <div class="question-card">
-                <div class="question-title">10. Otomatisasi Perhitungan (Cell Referencing):</div>
-                <p style="color: #475569; font-size: 0.95rem; margin-top:0;">Jelaskan keunggulan mereferensikan alamat sel (contoh: `=A1*B1`) dibandingkan mengetik langsung angka nominalnya (`=100*50`) dalam rumus spreadsheet!</p>
-                <textarea class="essay-input" name="q10" placeholder="Tuliskan jawaban Anda..." required></textarea>
-            </div>
-
-            <!-- TOMBOL AKSI -->
             <div class="action-area">
-                <button type="button" class="btn btn-primary" onclick="generatePDF()">
-                    💾 Download PDF Ujian
-                </button>
-                <button type="button" class="btn btn-success" onclick="submitToDrive()">
-                    🚀 Kirim ke Google Drive
-                </button>
+                <button type="button" class="btn btn-primary" onclick="generatePDF()">💾 Download PDF Ujian</button>
+                <button type="button" class="btn btn-success" onclick="submitToDrive()">🚀 Kirim ke Google Drive</button>
             </div>
         </form>
     </div>
@@ -383,134 +89,76 @@
 
 <script>
     let isIdentityLocked = false;
-    // URL GOOGLE APPS SCRIPT WEB APP ANDA
     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz8YC9A1GTbds-hstQUFd46VHlJP-vNcR-MEDvPmYDlh4v_0s7i6xIKGPzkW27e8IEXuQ/exec"; 
 
-    // --- PROTEKSI ANTI COPY-PASTE & DRAG PADA AREA UJIAN ---
-    document.addEventListener('copy', (e) => e.preventDefault());
-    document.addEventListener('paste', (e) => e.preventDefault());
-    document.addEventListener('cut', (e) => e.preventDefault());
-    document.addEventListener('contextmenu', (e) => e.preventDefault());
-    document.addEventListener('dragstart', (e) => e.preventDefault());
+    document.addEventListener('copy', e => e.preventDefault());
+    document.addEventListener('paste', e => e.preventDefault());
+    document.addEventListener('cut', e => e.preventDefault());
+    document.addEventListener('contextmenu', e => e.preventDefault());
+    document.addEventListener('dragstart', e => e.preventDefault());
 
-    // --- MANAJEMEN KUNCI IDENTITAS ---
     function checkIdentityInputs() {
         const name = document.getElementById('studentName').value.trim();
         const studentClass = document.getElementById('studentClass').value.trim();
-        const btnLock = document.getElementById('btnManualLock');
-        btnLock.disabled = !(name && studentClass);
+        document.getElementById('btnManualLock').disabled = !(name && studentClass);
     }
 
     function lockIdentity() {
         const nameInput = document.getElementById('studentName');
         const classInput = document.getElementById('studentClass');
-
-        if (!nameInput.value.trim() || !classInput.value.trim()) {
-            showAlert('Mohon isi Nama Lengkap dan Kelas sebelum melanjutkan!', 'warning');
-            return false;
-        }
-
+        if (!nameInput.value.trim() || !classInput.value.trim()) { showAlert('Isi Nama dan Kelas!', 'warning'); return false; }
         if (!isIdentityLocked) {
-            nameInput.disabled = true;
-            classInput.disabled = true;
-            isIdentityLocked = true;
-
-            const badge = document.getElementById('lockBadge');
-            badge.textContent = "Terkunci Otomatis";
-            badge.className = "status-badge badge-locked";
+            nameInput.disabled = true; classInput.disabled = true; isIdentityLocked = true;
+            document.getElementById('lockBadge').textContent = "Terkunci Otomatis";
+            document.getElementById('lockBadge').className = "status-badge badge-locked";
             document.getElementById('btnManualLock').style.display = 'none';
         }
         return true;
     }
 
-    // Otomatis kunci identitas saat siswa mulai mengetik jawaban essay pertama kali
-    document.querySelectorAll('.essay-input').forEach(textarea => {
-        textarea.addEventListener('focus', () => {
-            if (!isIdentityLocked) {
-                const locked = lockIdentity();
-                if (!locked) {
-                    textarea.blur();
-                }
-            }
-        });
-    });
+    document.querySelectorAll('.essay-input').forEach(ta => { ta.addEventListener('focus', () => { if (!isIdentityLocked) lockIdentity(); }); });
 
-    // --- HELPER ALERT ---
-    function showAlert(message, type) {
-        const alertBox = document.getElementById('statusAlert');
-        alertBox.style.display = 'block';
-        alertBox.textContent = message;
-        alertBox.className = type === 'success' ? 'alert-box alert-success' : 'alert-box alert-warning';
-        window.scrollTo({ top: alertBox.offsetTop - 50, behavior: 'smooth' });
+    function showAlert(msg, type) {
+        const box = document.getElementById('statusAlert');
+        box.style.display = 'block'; box.textContent = msg;
+        box.className = type === 'success' ? 'alert-box alert-success' : 'alert-box alert-warning';
+        window.scrollTo({ top: box.offsetTop - 50, behavior: 'smooth' });
     }
 
-    // --- DOWNLOAD / CETAK PDF (Format nama file: nama_siswa|kelas|tugas bab 4.pdf) ---
     function generatePDF() {
         const name = document.getElementById('studentName').value.trim();
         const studentClass = document.getElementById('studentClass').value.trim();
-
-        if (!name || !studentClass) {
-            showAlert('Lengkapi Nama dan Kelas sebelum mengunduh PDF!', 'warning');
-            return;
-        }
-
-        const formattedTitle = `${name}|${studentClass}|Tugas Bab 4`;
-        const originalTitle = document.title;
-        document.title = formattedTitle;
-
-        window.print();
-
-        document.title = originalTitle;
+        if (!name || !studentClass) { showAlert('Lengkapi Nama dan Kelas!', 'warning'); return; }
+        const element = document.querySelector('.container');
+        const opt = { margin: 10, filename: `${name}|${studentClass}|tugas bab 4.pdf`, image: { type: 'jpeg', quality: 0.98 }, html2canvas: { scale: 2 }, jsPDF: { unit: 'mm', format: 'a4' } };
+        html2pdf().from(element).set(opt).save();
     }
 
-    // --- PENGIRIMAN OTOMATIS KE GOOGLE DRIVE & SHEETS ---
     async function submitToDrive() {
         const name = document.getElementById('studentName').value.trim();
         const studentClass = document.getElementById('studentClass').value.trim();
+        if (!name || !studentClass) { showAlert('Isi identitas terlebih dahulu!', 'warning'); return; }
 
-        if (!name || !studentClass) {
-            showAlert('Isi identitas Nama dan Kelas terlebih dahulu!', 'warning');
-            return;
-        }
-
-        let answers = {};
-        let allFilled = true;
+        let answers = {}; let allFilled = true;
         for (let i = 1; i <= 10; i++) {
             let val = document.querySelector(`textarea[name="q${i}"]`).value.trim();
             if (!val) allFilled = false;
             answers[`soal${i}`] = val;
         }
+        if (!allFilled) { showAlert('Semua soal wajib diisi!', 'warning'); return; }
 
-        if (!allFilled) {
-            showAlert('Semua dari 10 soal essay wajib diisi sebelum dikirim!', 'warning');
-            return;
-        }
+        showAlert('Sedang mengirim data teks & PDF ke Google Drive...', 'success');
+        const element = document.querySelector('.container');
+        const opt = { margin: 10, filename: `${name}|${studentClass}|tugas bab 4.pdf`, image: { type: 'jpeg', quality: 0.98 }, html2canvas: { scale: 2 }, jsPDF: { unit: 'mm', format: 'a4' } };
 
-        const payload = {
-            fileName: `${name}|${studentClass}|Tugas Bab 4`,
-            nama: name,
-            kelas: studentClass,
-            jawaban: answers,
-            waktuKirim: new Date().toLocaleString('id-ID')
-        };
-
-        showAlert('Sedang mengirim jawaban ke Google Drive & Spreadsheet...', 'success');
-
-        try {
-            await fetch(GOOGLE_SCRIPT_URL, {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
-            });
-
-            showAlert('✅ Jawaban berhasil terkirim ke Google Drive Pengajar!', 'success');
-        } catch (error) {
-            console.error(error);
-            showAlert('⚠️ Terjadi kendala koneksi saat pengiriman otomatis. Silakan gunakan tombol "Download PDF" sebagai alternatif!', 'warning');
-        }
+        html2pdf().from(element).set(opt).outputPdf('datauristring').then(async function(pdfBase64) {
+            const payload = { fileName: `${name}|${studentClass}|tugas bab 4`, nama: name, kelas: studentClass, jawaban: answers, waktuKirim: new Date().toLocaleString('id-ID'), pdfBase64: pdfBase64 };
+            try {
+                await fetch(GOOGLE_SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+                showAlert('✅ Jawaban teks & PDF berhasil terkirim ke Google Drive!', 'success');
+            } catch (err) { showAlert('⚠️ Kendala koneksi pengiriman.', 'warning'); }
+        });
     }
 </script>
-
 </body>
 </html>
