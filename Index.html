@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Tugas Informatika Kelas XI - Analisis Data</title>
+    <!-- Google Fonts & FontAwesome untuk ikon profesional -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-gradient);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .wrapper {
+            width: 100%;
+            max-width: 1100px;
+        }
+
+        /* Header Section */
+        .hero-section {
+            text-align: center;
+            background: #ffffff;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 40px;
+            border: 1px solid #cbd5e1;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 6px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899);
+        }
+
+        .hero-section h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 12px;
+        }
+
+        .hero-section p {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            max-width: 750px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .badge-kurikulum {
+            display: inline-block;
+            background: #eff6ff;
+            color: #1d4ed8;
+            font-weight: 600;
+            font-size: 0.85rem;
+            padding: 6px 14px;
+            border-radius: 20px;
+            margin-bottom: 15px;
+            border: 1px solid #bfdbfe;
+        }
+
+        /* Grid Cards Section */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .chapter-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .chapter-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Warna Aksen Unik Tiap Bab (Full Color) */
+        .card-bab-1 { border-top: 5px solid #3b82f6; }
+        .card-bab-2 { border-top: 5px solid #10b981; }
+        .card-bab-3 { border-top: 5px solid #f59e0b; }
+        .card-bab-4 { border-top: 5px solid #8b5cf6; }
+        .card-bab-5 { border-top: 5px solid #ec4899; }
+        .card-bab-6 { border-top: 5px solid #06b6d4; }
+
+        .card-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .chapter-tag {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 4px 10px;
+            border-radius: 6px;
+        }
+
+        .card-bab-1 .chapter-tag { background: #eff6ff; color: #2563eb; }
+        .card-bab-2 .chapter-tag { background: #ecfdf5; color: #059669; }
+        .card-bab-3 .chapter-tag { background: #fffbeb; color: #d97706; }
+        .card-bab-4 .chapter-tag { background: #f3e8ff; color: #7c3aed; }
+        .card-bab-5 .chapter-tag { background: #fdf2f8; color: #db2777; }
+        .card-bab-6 .chapter-tag { background: #ecfeff; color: #0891b2; }
+
+        .chapter-icon {
+            font-size: 1.5rem;
+        }
+        .card-bab-1 .chapter-icon { color: #3b82f6; }
+        .card-bab-2 .chapter-icon { color: #10b981; }
+        .card-bab-3 .chapter-icon { color: #f59e0b; }
+        .card-bab-4 .chapter-icon { color: #8b5cf6; }
+        .card-bab-5 .chapter-icon { color: #ec4899; }
+        .card-bab-6 .chapter-icon { color: #06b6d4; }
+
+        .chapter-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 10px;
+        }
+
+        .chapter-desc {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin-bottom: 25px;
+        }
+
+        .btn-access {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            color: white;
+            transition: opacity 0.2s;
+        }
+
+        .btn-access:hover { opacity: 0.9; }
+
+        .card-bab-1 .btn-access { background-color: #3b82f6; }
+        .card-bab-2 .btn-access { background-color: #10b981; }
+        .card-bab-3 .btn-access { background-color: #f59e0b; }
+        .card-bab-4 .btn-access { background-color: #8b5cf6; }
+        .card-bab-5 .btn-access { background-color: #ec4899; }
+        .card-bab-6 .btn-access { background-color: #06b6d4; }
+
+        /* Footer Notes */
+        .footer-note {
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            padding: 20px 25px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .footer-note strong {
+            color: #1e293b;
+        }
+
+        @media (max-width: 768px) {
+            .hero-section h1 { font-size: 1.8rem; }
+            body { padding: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="wrapper">
+    <!-- Header / Banner Utama -->
+    <div class="hero-section">
+        <span class="badge-kurikulum">Kurikulum Merdeka — Fase F</span>
+        <h1>Portal Tugas & Uji Pemahaman Informatika</h1>
+        <p>Silakan pilih bab materi di bawah ini untuk mempelajari ringkasan materi serta mengerjakan 10 soal essay interaktif yang terhubung langsung ke Google Drive pengajar.</p>
+    </div>
+
+    <!-- Grid Kartu Bab 1 s.d 6 -->
+    <div class="grid-container">
+        
+        <!-- Bab 1 -->
+        <div class="chapter-card card-bab-1">
+            <div>
+                <div class="card-top">
+                    <span class="chapter-tag">Bab 01</span>
+                    <i class="fa-solid fa-database chapter-icon"></i>
+                </div>
+                <div class="chapter-title">Mengenal Analisis Data</div>
+                <div class="chapter-desc">Mempelajari konsep dasar data, perbedaan data, informasi, dan pengetahuan beserta penerapannya.</div>
+            </div>
+            <a href="bab 1.html" class="btn-access">Mulai Bab 1 <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <!-- Bab 2 -->
+        <div class="chapter-card card-bab-2">
+            <div>
+                <div class="card-top">
+                    <span class="chapter-tag">Bab 02</span>
+                    <i class="fa-solid fa-layer-group chapter-icon"></i>
+                </div>
+                <div class="chapter-title">Jenis dan Sumber Data</div>
+                <div class="chapter-desc">Memahami klasifikasi data kuantitatif, kualitatif, primer, sekunder, serta skala pengukurannya.</div>
+            </div>
+            <a href="bab 2.html" class="btn-access">Mulai Bab 2 <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <!-- Bab 3 -->
+        <div class="chapter-card card-bab-3">
+            <div>
+                <div class="card-top">
+                    <span class="chapter-tag">Bab 03</span>
+                    <i class="fa-solid fa-stairs chapter-icon"></i>
+                </div>
+                <div class="chapter-title">Tahapan Analisis Data</div>
+                <div class="chapter-desc">Menelaah siklus sistematis mulai dari perumusan masalah, pembersihan data, hingga interpretasi.</div>
+            </div>
+            <a href="bab 3.html" class="btn-access">Mulai Bab 3 <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <!-- Bab 4 -->
+        <div class="chapter-card card-bab-4">
+            <div>
+                <div class="card-top">
+                    <span class="chapter-tag">Bab 04</span>
+                    <i class="fa-solid fa-table-cells chapter-icon"></i>
+                </div>
+                <div class="chapter-title">Pengolahan Data (Spreadsheet)</div>
+                <div class="chapter-desc">Praktik struktur sel, rentang, formula dasar, fitur sorting, serta filtering pada aplikasi pengolah angka.</div>
+            </div>
+            <a href="bab 4.html" class="btn-access">Mulai Bab 4 <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <!-- Bab 5 -->
+        <div class="chapter-card card-bab-5">
+            <div>
+                <div class="card-top">
+                    <span class="chapter-tag">Bab 05</span>
+                    <i class="fa-solid fa-chart-pie chapter-icon"></i>
+                </div>
+                <div class="chapter-title">Teknik Dasar Analisis Data</div>
+                <div class="chapter-desc">Mengkaji ukuran pemusatan (Mean, Median, Modus), nilai ekstrem, serta rentang untuk membaca sebaran data.</div>
+            </div>
+            <a href="bab 5.html" class="btn-access">Mulai Bab 5 <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <!-- Bab 6 -->
+        <div class="chapter-card card-bab-6">
+            <div>
+                <div class="card-top">
+                    <span class="chapter-tag">Bab 06</span>
+                    <i class="fa-solid fa-chart-column chapter-icon"></i>
+                </div>
+                <div class="chapter-title">Rumus Statistik & Visualisasi</div>
+                <div class="chapter-desc">Menggunakan rumus statistik lanjutan (SUM, AVERAGE, COUNT) dan menyajikannya dalam bentuk grafik visual.</div>
+            </div>
+            <a href="bab 6.html" class="btn-access">Mulai Bab 6 <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+    </div>
+
+    <!-- Footer Catatan -->
+    <div class="footer-note">
+        <p><i class="fa-solid fa-circle-info" style="color: #3b82f6; margin-right: 6px;"></i> <strong>Catatan Peserta Didik:</strong> Pastikan Anda mengisi identitas lengkap di setiap bab sebelum mengerjakan soal. Lembar jawaban teks dan file PDF akan otomatis terkirim ke Google Drive pengajar saat tombol kirim ditekan.</p>
+    </div>
+</div>
+
+</body>
+</html>
