@@ -257,38 +257,23 @@
         <h2>RINGKASAN MATERI: PENGOLAHAN DATA MENGGUNAKAN APLIKASI (SPREADSHEET)</h2>
         
         <h3>4.1 Mengenal Spreadsheet</h3>
-        <p>Perangkat lunak lembar kerja (spreadsheet) seperti Microsoft Excel, Google Sheets, atau LibreOffice Calc adalah alat bantu komputasi utama untuk merekam, menghitung, menyaring, dan menganalisis data dalam bentuk tabel baris dan kolom secara efisien.</p>
+        <p>Perangkat lunak lembar kerja (spreadsheet) seperti Microsoft Excel atau Google Sheets adalah alat bantu komputasi utama untuk merekam, menghitung, menyaring, dan menganalisis data dalam bentuk tabel baris dan kolom secara efisien[span_1](start_span)[span_1](end_span).</p>
 
         <h3>4.2 Struktur Dasar Sel dan Rentang (Range)</h3>
-        <p>Lembar kerja tersusun atas perpotongan baris (angka) dan kolom (huruf) yang disebut **Sel** (contoh: sel `A1`). Kumpulan beberapa sel yang berdekatan disebut **Rentang/Range** (contoh: `A1:B10`) yang sering digunakan dalam operasi rumus.</p>
+        <p>Lembar kerja tersusun atas perpotongan baris dan kolom yang disebut **Sel** (contoh: sel `A1`). Kumpulan beberapa sel yang berdekatan disebut **Rentang/Range** (contoh: `A1:B10`)[span_2](start_span)[span_2](end_span).</p>
 
         <h3>4.3 Rumus (Formula) dan Fungsi Dasar</h3>
-        <p>Dalam spreadsheet, perhitungan dilakukan menggunakan rumus (diawali tanda sama dengan `=`) atau fungsi bawaan yang mempermudah kalkulasi data dalam jumlah besar.</p>
-        <table class="material-table">
-            <thead>
-                <tr>
-                    <th>Fungsi</th>
-                    <th>Kegunaan Utama</th>
-                    <th>Contoh Penulisan</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr><td>SUM</td><td>Menjumlahkan sekumpulan angka</td><td>`=SUM(A1:A10)`</td></tr>
-                <tr><td>AVERAGE</td><td>Mencari nilai rata-rata data</td><td>`=AVERAGE(A1:A10)`</td></tr>
-                <tr><td>MAX / MIN</td><td>Mencari nilai tertinggi atau terendah</td><td>`=MAX(A1:A10)`</td></tr>
-                <tr><td>COUNT</td><td>Menghitung jumlah sel yang berisi angka</td><td>`=COUNT(A1:A10)`</td></tr>
-            </tbody>
-        </table>
+        <p>Perhitungan dalam spreadsheet dilakukan menggunakan rumus (diawali tanda `=`) atau fungsi bawaan seperti `SUM`, `AVERAGE`, `MAX`, `MIN`, dan `COUNT` untuk mengkalkulasi data dalam jumlah besar[span_3](start_span)[span_3](end_span).</p>
 
         <h3>4.4 Pengurutan (Sorting) dan Penyaringan (Filtering)</h3>
-        <p>Fitur *Sorting* memungkinkan data diurutkan berdasarkan kriteria tertentu (dari terkecil ke terbesar / A-Z), sedangkan *Filtering* berfungsi menyembunyikan data yang tidak diperlukan untuk fokus pada kriteria spesifik saja.</p>
+        <p>Fitur *Sorting* digunakan untuk mengurutkan data berdasarkan kriteria tertentu, sedangkan *Filtering* berfungsi menyembunyikan data yang tidak diperlukan guna fokus pada kriteria spesifik[span_4](start_span)[span_4](end_span).</p>
     </div>
 
     <!-- BAGIAN UJIAN / UJI PEMAHAMAN (10 SOAL ESSAY) -->
     <div class="exam-section">
         <div class="header" style="border:none; margin-bottom:20px;">
             <h2 style="color:var(--primary-color);">UJI PEMAHAMAN ESSAY (10 SOAL)</h2>
-            <p>Jawablah 10 pertanyaan berikut berdasarkan analisis konsep Bab 4. Dilarang menyalin-menempel teks dari luar.</p>
+            <p>Jawablah 10 pertanyaan berikut secara mandiri dan kritis. Dilarang melakukan salin-tempel (copy-paste).</p>
         </div>
 
         <div id="statusAlert" class="alert-box"></div>
@@ -398,16 +383,17 @@
 
 <script>
     let isIdentityLocked = false;
-    // URL GOOGLE APPS SCRIPT WEB APP (Menggunakan database Google Drive yang sama)
+    // URL GOOGLE APPS SCRIPT WEB APP ANDA
     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz8YC9A1GTbds-hstQUFd46VHlJP-vNcR-MEDvPmYDlh4v_0s7i6xIKGPzkW27e8IEXuQ/exec"; 
 
-    // --- PROTEKSI ANTI COPY-PASTE & DRAG ---
+    // --- PROTEKSI ANTI COPY-PASTE & DRAG PADA AREA UJIAN ---
     document.addEventListener('copy', (e) => e.preventDefault());
     document.addEventListener('paste', (e) => e.preventDefault());
     document.addEventListener('cut', (e) => e.preventDefault());
     document.addEventListener('contextmenu', (e) => e.preventDefault());
     document.addEventListener('dragstart', (e) => e.preventDefault());
 
+    // --- MANAJEMEN KUNCI IDENTITAS ---
     function checkIdentityInputs() {
         const name = document.getElementById('studentName').value.trim();
         const studentClass = document.getElementById('studentClass').value.trim();
@@ -437,6 +423,7 @@
         return true;
     }
 
+    // Otomatis kunci identitas saat siswa mulai mengetik jawaban essay pertama kali
     document.querySelectorAll('.essay-input').forEach(textarea => {
         textarea.addEventListener('focus', () => {
             if (!isIdentityLocked) {
@@ -448,6 +435,7 @@
         });
     });
 
+    // --- HELPER ALERT ---
     function showAlert(message, type) {
         const alertBox = document.getElementById('statusAlert');
         alertBox.style.display = 'block';
@@ -475,7 +463,7 @@
         document.title = originalTitle;
     }
 
-    // --- PENGIRIMAN OTOMATIS KE GOOGLE DRIVE ---
+    // --- PENGIRIMAN OTOMATIS KE GOOGLE DRIVE & SHEETS ---
     async function submitToDrive() {
         const name = document.getElementById('studentName').value.trim();
         const studentClass = document.getElementById('studentClass').value.trim();
@@ -506,7 +494,7 @@
             waktuKirim: new Date().toLocaleString('id-ID')
         };
 
-        showAlert('Sedang mengirim jawaban ke Google Drive...', 'success');
+        showAlert('Sedang mengirim jawaban ke Google Drive & Spreadsheet...', 'success');
 
         try {
             await fetch(GOOGLE_SCRIPT_URL, {
@@ -519,7 +507,7 @@
             showAlert('✅ Jawaban berhasil terkirim ke Google Drive Pengajar!', 'success');
         } catch (error) {
             console.error(error);
-            showAlert('⚠️ Terjadi kendala koneksi saat pengiriman otomatis. Gunakan tombol "Download PDF" sebagai alternatif!', 'warning');
+            showAlert('⚠️ Terjadi kendala koneksi saat pengiriman otomatis. Silakan gunakan tombol "Download PDF" sebagai alternatif!', 'warning');
         }
     }
 </script>
