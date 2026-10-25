@@ -4,38 +4,109 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Materi & Uji Pemahaman Bab 5 - Teknik Dasar Analisis Data</title>
+    <!-- Library html2pdf untuk mengonversi tampilan web menjadi PDF -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <style>
-        :root { --primary-color: #2c3e50; --secondary-color: #3498db; --bg-color: #f4f7f6; --card-bg: #ffffff; --border-color: #cbd5e1; }
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+            --border-color: #cbd5e1;
+        }
+
         * { box-sizing: border-box; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg-color); color: #333; margin: 0; padding: 20px; display: flex; justify-content: center; }
-        .container { width: 100%; max-width: 900px; background: var(--card-bg); padding: 40px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border: 1px solid var(--border-color); }
-        .header { text-align: center; border-bottom: 2px solid var(--primary-color); padding-bottom: 20px; margin-bottom: 30px; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border: 1px solid var(--border-color);
+        }
+
+        .header {
+            text-align: center;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
         .header h1 { color: var(--primary-color); margin: 0 0 8px 0; font-size: 1.8rem; }
-        .material-section { background: #f8fafc; border: 1px solid var(--border-color); border-radius: 8px; padding: 25px; margin-bottom: 40px; }
+        .header p { color: #64748b; margin: 0; font-size: 0.95rem; }
+
+        .material-section {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 40px;
+        }
+
         .material-section h2 { color: var(--primary-color); font-size: 1.4rem; border-bottom: 2px solid var(--secondary-color); padding-bottom: 8px; margin-top: 0; }
-        table.material-table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 0.95rem; }
+        .material-section h3 { color: #34495e; font-size: 1.1rem; margin-top: 20px; }
+        .material-section p, .material-section li { line-height: 1.6; color: #475569; }
+
+        table.material-table {
+            width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 0.95rem;
+        }
         table.material-table th, table.material-table td { padding: 10px 12px; border: 1px solid #cbd5e1; text-align: left; }
         table.material-table th { background-color: #e2e8f0; color: var(--primary-color); }
+
         .exam-section { border-top: 3px dashed var(--border-color); padding-top: 30px; }
-        .identity-card { background-color: #f1f5f9; border: 1px solid var(--border-color); border-left: 5px solid var(--secondary-color); padding: 20px; border-radius: 8px; margin-bottom: 30px; }
+
+        .identity-card {
+            background-color: #f1f5f9; border: 1px solid var(--border-color); border-left: 5px solid var(--secondary-color); padding: 20px; border-radius: 8px; margin-bottom: 30px;
+        }
+
         .form-group { margin-bottom: 15px; }
         .form-group label { display: block; margin-bottom: 5px; font-weight: 600; color: #475569; }
-        .form-control { width: 100%; padding: 10px 12px; border: 1px solid var(--border-color); border-radius: 6px; font-size: 1rem; }
-        .form-control:disabled { background-color: #e2e8f0; color: #64748b; font-weight: bold; }
+
+        .form-control {
+            width: 100%; padding: 10px 12px; border: 1px solid var(--border-color); border-radius: 6px; font-size: 1rem;
+        }
+        .form-control:disabled { background-color: #e2e8f0; color: #64748b; cursor: not-allowed; font-weight: bold; }
+
         .status-badge { display: inline-block; font-size: 0.8rem; padding: 4px 8px; border-radius: 4px; margin-top: 5px; font-weight: bold; }
         .badge-unlocked { background: #fef3c7; color: #92400e; }
         .badge-locked { background: #dcfce7; color: #166534; }
+
         .question-card { background: #ffffff; border: 1px solid var(--border-color); border-radius: 8px; padding: 20px; margin-bottom: 25px; }
         .question-title { font-weight: 600; color: var(--primary-color); margin-bottom: 10px; font-size: 1.05rem; }
-        textarea.essay-input { width: 100%; min-height: 100px; padding: 10px; border: 1px solid var(--border-color); border-radius: 6px; resize: vertical; -webkit-user-select: text !important; user-select: text !important; }
+
+        textarea.essay-input {
+            width: 100%; min-height: 100px; padding: 10px; border: 1px solid var(--border-color); border-radius: 6px; resize: vertical; font-family: inherit; -webkit-user-select: text !important; user-select: text !important;
+        }
+
         .action-area { display: flex; gap: 15px; justify-content: flex-end; margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--border-color); }
+
         .btn { padding: 12px 24px; font-size: 1rem; font-weight: 600; border: none; border-radius: 6px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; }
         .btn-primary { background-color: #2563eb; color: white; }
         .btn-success { background-color: #16a34a; color: white; }
+
         .alert-box { display: none; padding: 15px; border-radius: 6px; margin-bottom: 20px; font-weight: 500; }
         .alert-success { background-color: #dcfce7; color: #15803d; border: 1px solid #86efac; }
         .alert-warning { background-color: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
+
+        @media print {
+            body { background: white; padding: 0; }
+            .container { box-shadow: none; border: none; max-width: 100%; padding: 0; }
+            .action-area, .status-badge, .btn-lock, .material-section { display: none !important; }
+            textarea.essay-input { border: none; border-bottom: 1px solid #000; border-radius: 0; }
+            .identity-card { background: none; border: 1px solid #000; }
+        }
     </style>
 </head>
 <body>
@@ -50,43 +121,55 @@
         <h2>RINGKASAN MATERI: TEKNIK DASAR ANALISIS DATA</h2>
         <h3>5.1 Ukuran Pemusatan Data</h3>
         <table class="material-table">
-            <thead><tr><th>Ukuran</th><th>Definisi & Cara Menentukan</th></tr></thead>
+            <thead>
+                <tr><th>Ukuran</th><th>Definisi & Cara Menentukan</th></tr>
+            </thead>
             <tbody>
-                <tr><td><strong>Mean (Rata-rata)</strong></td><td>Hasil bagi jumlah seluruh nilai data dengan banyaknya data[span_86](start_span)[span_86](end_span).</td></tr>
-                <tr><td><strong>Median (Nilai Tengah)</strong></td><td>Nilai tengah setelah data diurutkan dari terkecil hingga terbesar[span_87](start_span)[span_87](end_span).</td></tr>
-                <tr><td><strong>Modus (Nilai Sering Muncul)</strong></td><td>Nilai atau kategori dengan frekuensi kemunculan terbanyak[span_88](start_span)[span_88](end_span).</td></tr>
+                <tr><td><strong>Mean (Rata-rata)</strong></td><td>Hasil bagi jumlah seluruh nilai data dengan banyaknya data.</td></tr>
+                <tr><td><strong>Median (Nilai Tengah)</strong></td><td>Nilai tengah setelah data diurutkan dari terkecil hingga terbesar.</td></tr>
+                <tr><td><strong>Modus (Nilai Sering Muncul)</strong></td><td>Nilai atau kategori dengan frekuensi kemunculan terbanyak.</td></tr>
             </tbody>
         </table>
         <h3>5.2 Nilai Ekstrem & Rentang</h3>
-        <p>Rentang (range) diperoleh dari selisih nilai maksimum dan minimum untuk mengukur sebaran data[span_89](start_span)[span_89](end_span).</p>
+        <p>Rentang (range) diperoleh dari selisih nilai maksimum dan minimum untuk mengukur sebaran data.</p>
     </div>
 
     <div class="exam-section">
         <div class="header" style="border:none; margin-bottom:20px;">
             <h2 style="color:var(--primary-color);">UJI PEMAHAMAN ESSAY (10 SOAL)</h2>
-            <p>Jawablah 10 pertanyaan berikut secara mandiri dan kritis. Dilarang melakukan salin-tempel (copy-paste)[span_90](start_span)[span_90](end_span).</p>
+            <p>Jawablah 10 pertanyaan berikut secara mandiri dan kritis. Dilarang melakukan salin-tempel (copy-paste).</p>
         </div>
 
         <div id="statusAlert" class="alert-box"></div>
 
         <div class="identity-card">
             <h3>Identitas Peserta Didik</h3>
-            <div class="form-group"><label>Nama Lengkap Siswa:</label><input type="text" id="studentName" class="form-control" placeholder="Ketik nama..." oninput="checkIdentityInputs()"></div>
-            <div class="form-group"><label>Kelas / Rombel:</label><input type="text" id="studentClass" class="form-control" placeholder="Contoh: XI IPA 1" oninput="checkIdentityInputs()"></div>
-            <div>Status Identitas: <span id="lockBadge" class="status-badge badge-unlocked">Belum Terkunci</span> <button type="button" id="btnManualLock" onclick="lockIdentity()" style="margin-left: 10px; cursor:pointer;" disabled>Kunci Identitas</button></div>
+            <div class="form-group">
+                <label for="studentName">Nama Lengkap Siswa:</label>
+                <input type="text" id="studentName" class="form-control" placeholder="Ketik nama lengkap Anda..." oninput="checkIdentityInputs()">
+            </div>
+            <div class="form-group">
+                <label for="studentClass">Kelas / Rombel:</label>
+                <input type="text" id="studentClass" class="form-control" placeholder="Contoh: XI IPA 1 / XI-F3" oninput="checkIdentityInputs()">
+            </div>
+            <div>
+                Status Identitas: 
+                <span id="lockBadge" class="status-badge badge-unlocked">Belum Terkunci</span>
+                <button type="button" class="btn-lock" id="btnManualLock" onclick="lockIdentity()" style="margin-left: 10px; cursor:pointer;" disabled>Kunci Identitas</button>
+            </div>
         </div>
 
         <form id="quizForm">
-            <div class="question-card"><div class="question-title">1. Esensi Analisis Deskriptif:</div><p style="color: #475569; font-size: 0.95rem;">Jelaskan apa yang dimaksud dengan analisis deskriptif sebagai landasan awal olah data mentah[span_91](start_span)[span_91](end_span).</p><textarea class="essay-input" name="q1" placeholder="Tuliskan jawaban Anda..." required></textarea></div>
-            <div class="question-card"><div class="question-title">2. Konsep Mean (Rata-rata):</div><p style="color: #475569; font-size: 0.95rem;">Bagaimana cara menghitung mean dan apa kelemahannya jika ada nilai ekstrem[span_92](start_span)[span_92](end_span)?</p><textarea class="essay-input" name="q2" placeholder="Tuliskan jawaban Anda..." required></textarea></div>
-            <div class="question-card"><div class="question-title">3. Keunggulan Median:</div><p style="color: #475569; font-size: 0.95rem;">Mengapa median lebih akurat dibanding mean untuk menggambarkan data pendapatan penduduk[span_93](start_span)[span_93](end_span)?</p><textarea class="essay-input" name="q3" placeholder="Tuliskan jawaban Anda..." required></textarea></div>
-            <div class="question-card"><div class="question-title">4. Peran Modus dalam Data Kualitatif:</div><p style="color: #475569; font-size: 0.95rem;">Kapan modus digunakan? Berikan contoh kasus di mana mean & median tidak bisa dihitung[span_94](start_span)[span_94](end_span)!</p><textarea class="essay-input" name="q4" placeholder="Tuliskan jawaban Anda..." required></textarea></div>
-            <div class="question-card"><div class="question-title">5. Nilai Minimum, Maksimum, dan Rentang:</div><p style="color: #475569; font-size: 0.95rem;">Apa yang dimaksud rentang (range) data dan bagaimana cara menghitungnya[span_95](start_span)[span_95](end_span)?</p><textarea class="essay-input" name="q5" placeholder="Tuliskan jawaban Anda..." required></textarea></div>
-            <div class="question-card"><div class="question-title">6. Analisis Frekuensi dan Persentase:</div><p style="color: #475569; font-size: 0.95rem;">Jelaskan bagaimana perhitungan frekuensi dan persentase membantu membaca proporsi data[span_96](start_span)[span_96](end_span).</p><textarea class="essay-input" name="q6" placeholder="Tuliskan jawaban Anda..." required></textarea></div>
-            <div class="question-card"><div class="question-title">7. Perbandingan Antar Kelompok Data:</div><p style="color: #475569; font-size: 0.95rem;">Bagaimana teknik dasar perbandingan digunakan untuk mengevaluasi performa dua kelas[span_97](start_span)[span_97](end_span)?</p><textarea class="essay-input" name="q7" placeholder="Tuliskan jawaban Anda..." required></textarea></div>
-            <div class="question-card"><div class="question-title">8. Membaca Tren Data Sederhana:</div><p style="color: #475569; font-size: 0.95rem;">Apa yang dimaksud dengan analisis tren berdasarkan waktu (time series sederhana)[span_98](start_span)[span_98](end_span)?</p><textarea class="essay-input" name="q8" placeholder="Tuliskan jawaban Anda..." required></textarea></div>
-            <div class="question-card"><div class="question-title">9. Studi Kasus Nilai Ujian:</div><p style="color: #475569; font-size: 0.95rem;">Jika nilai 5 siswa `[50, 75, 80, 85, 100]`, hitung mean dan mediannya secara analitis[span_99](start_span)[span_99](end_span)!</p><textarea class="essay-input" name="q9" placeholder="Tuliskan jawaban Anda..." required></textarea></div>
-            <div class="question-card"><div class="question-title">10. Evaluasi Hasil Analisis:</div><p style="color: #475569; font-size: 0.95rem;">Mengapa tidak boleh hanya mengandalkan satu jenis ukuran pemusatan saja saat menyimpulkan data[span_100](start_span)[span_100](end_span)?</p><textarea class="essay-input" name="q10" placeholder="Tuliskan jawaban Anda..." required></textarea></div>
+            <div class="question-card"><div class="question-title">1. Esensi Analisis Deskriptif:</div><p style="color: #475569; font-size: 0.95rem;">Jelaskan apa yang dimaksud dengan analisis deskriptif sebagai landasan awal olah data mentah.</p><textarea class="essay-input" name="q1" placeholder="Tuliskan jawaban Anda..." required></textarea></div>
+            <div class="question-card"><div class="question-title">2. Konsep Mean (Rata-rata):</div><p style="color: #475569; font-size: 0.95rem;">Bagaimana cara menghitung mean dan apa kelemahannya jika ada nilai ekstrem?</p><textarea class="essay-input" name="q2" placeholder="Tuliskan jawaban Anda..." required></textarea></div>
+            <div class="question-card"><div class="question-title">3. Keunggulan Median:</div><p style="color: #475569; font-size: 0.95rem;">Mengapa median lebih akurat dibanding mean untuk menggambarkan data pendapatan penduduk?</p><textarea class="essay-input" name="q3" placeholder="Tuliskan jawaban Anda..." required></textarea></div>
+            <div class="question-card"><div class="question-title">4. Peran Modus dalam Data Kualitatif:</div><p style="color: #475569; font-size: 0.95rem;">Kapan modus digunakan? Berikan contoh kasus di mana mean & median tidak bisa dihitung!</p><textarea class="essay-input" name="q4" placeholder="Tuliskan jawaban Anda..." required></textarea></div>
+            <div class="question-card"><div class="question-title">5. Nilai Minimum, Maksimum, dan Rentang:</div><p style="color: #475569; font-size: 0.95rem;">Apa yang dimaksud rentang (range) data dan bagaimana cara menghitungnya?</p><textarea class="essay-input" name="q5" placeholder="Tuliskan jawaban Anda..." required></textarea></div>
+            <div class="question-card"><div class="question-title">6. Analisis Frekuensi dan Persentase:</div><p style="color: #475569; font-size: 0.95rem;">Jelaskan bagaimana perhitungan frekuensi dan persentase membantu membaca proporsi data.</p><textarea class="essay-input" name="q6" placeholder="Tuliskan jawaban Anda..." required></textarea></div>
+            <div class="question-card"><div class="question-title">7. Perbandingan Antar Kelompok Data:</div><p style="color: #475569; font-size: 0.95rem;">Bagaimana teknik dasar perbandingan digunakan untuk mengevaluasi performa dua kelompok?</p><textarea class="essay-input" name="q7" placeholder="Tuliskan jawaban Anda..." required></textarea></div>
+            <div class="question-card"><div class="question-title">8. Membaca Tren Data Sederhana:</div><p style="color: #475569; font-size: 0.95rem;">Apa yang dimaksud dengan analisis tren berdasarkan waktu (time series sederhana)?</p><textarea class="essay-input" name="q8" placeholder="Tuliskan jawaban Anda..." required></textarea></div>
+            <div class="question-card"><div class="question-title">9. Studi Kasus Nilai Ujian:</div><p style="color: #475569; font-size: 0.95rem;">Jika nilai 5 siswa adalah `[50, 75, 80, 85, 100]`, hitung mean dan mediannya secara analitis!</p><textarea class="essay-input" name="q9" placeholder="Tuliskan jawaban Anda..." required></textarea></div>
+            <div class="question-card"><div class="question-title">10. Evaluasi Hasil Analisis:</div><p style="color: #475569; font-size: 0.95rem;">Mengapa seorang analis tidak boleh hanya mengandalkan satu jenis ukuran pemusatan saja saat menyimpulkan data?</p><textarea class="essay-input" name="q10" placeholder="Tuliskan jawaban Anda..." required></textarea></div>
 
             <div class="action-area">
                 <button type="button" class="btn btn-primary" onclick="generatePDF()">💾 Download PDF Ujian</button>
@@ -115,57 +198,106 @@
     function lockIdentity() {
         const nameInput = document.getElementById('studentName');
         const classInput = document.getElementById('studentClass');
-        if (!nameInput.value.trim() || !classInput.value.trim()) { showAlert('Isi Nama dan Kelas!', 'warning'); return false; }
+        if (!nameInput.value.trim() || !classInput.value.trim()) {
+            showAlert('Mohon isi Nama Lengkap dan Kelas sebelum melanjutkan!', 'warning');
+            return false;
+        }
         if (!isIdentityLocked) {
-            nameInput.disabled = true; classInput.disabled = true; isIdentityLocked = true;
-            document.getElementById('lockBadge').textContent = "Terkunci Otomatis";
-            document.getElementById('lockBadge').className = "status-badge badge-locked";
+            nameInput.disabled = true;
+            classInput.disabled = true;
+            isIdentityLocked = true;
+            const badge = document.getElementById('lockBadge');
+            badge.textContent = "Terkunci Otomatis";
+            badge.className = "status-badge badge-locked";
             document.getElementById('btnManualLock').style.display = 'none';
         }
         return true;
     }
 
-    document.querySelectorAll('.essay-input').forEach(ta => { ta.addEventListener('focus', () => { if (!isIdentityLocked) lockIdentity(); }); });
+    document.querySelectorAll('.essay-input').forEach(textarea => {
+        textarea.addEventListener('focus', () => { if (!isIdentityLocked) lockIdentity(); });
+    });
 
-    function showAlert(msg, type) {
-        const box = document.getElementById('statusAlert');
-        box.style.display = 'block'; box.textContent = msg;
-        box.className = type === 'success' ? 'alert-box alert-success' : 'alert-box alert-warning';
-        window.scrollTo({ top: box.offsetTop - 50, behavior: 'smooth' });
+    function showAlert(message, type) {
+        const alertBox = document.getElementById('statusAlert');
+        alertBox.style.display = 'block';
+        alertBox.textContent = message;
+        alertBox.className = type === 'success' ? 'alert-box alert-success' : 'alert-box alert-warning';
+        window.scrollTo({ top: alertBox.offsetTop - 50, behavior: 'smooth' });
     }
 
     function generatePDF() {
         const name = document.getElementById('studentName').value.trim();
         const studentClass = document.getElementById('studentClass').value.trim();
-        if (!name || !studentClass) { showAlert('Lengkapi Nama dan Kelas!', 'warning'); return; }
+        if (!name || !studentClass) {
+            showAlert('Lengkapi Nama dan Kelas sebelum mengunduh PDF!', 'warning');
+            return;
+        }
         const element = document.querySelector('.container');
-        const opt = { margin: 10, filename: `${name}|${studentClass}|tugas bab 5.pdf`, image: { type: 'jpeg', quality: 0.98 }, html2canvas: { scale: 2 }, jsPDF: { unit: 'mm', format: 'a4' } };
+        const opt = {
+            margin: 10,
+            filename: `${name}|${studentClass}|tugas bab 5.pdf`,
+            image: { type: 'jpeg', quality: 0.85 },
+            html2canvas: { scale: 1.5, useCORS: true },
+            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        };
         html2pdf().from(element).set(opt).save();
     }
 
     async function submitToDrive() {
         const name = document.getElementById('studentName').value.trim();
         const studentClass = document.getElementById('studentClass').value.trim();
-        if (!name || !studentClass) { showAlert('Isi identitas terlebih dahulu!', 'warning'); return; }
+        if (!name || !studentClass) {
+            showAlert('Isi identitas Nama dan Kelas terlebih dahulu!', 'warning');
+            return;
+        }
 
-        let answers = {}; let allFilled = true;
+        let answers = {};
+        let allFilled = true;
         for (let i = 1; i <= 10; i++) {
             let val = document.querySelector(`textarea[name="q${i}"]`).value.trim();
             if (!val) allFilled = false;
             answers[`soal${i}`] = val;
         }
-        if (!allFilled) { showAlert('Semua soal wajib diisi!', 'warning'); return; }
 
-        showAlert('Sedang mengirim data teks & PDF ke Google Drive...', 'success');
+        if (!allFilled) {
+            showAlert('Semua dari 10 soal essay wajib diisi sebelum dikirim!', 'warning');
+            return;
+        }
+
+        showAlert('Sedang memproses seluruh jawaban (10 soal) & membuat file PDF...', 'success');
+
         const element = document.querySelector('.container');
-        const opt = { margin: 10, filename: `${name}|${studentClass}|tugas bab 5.pdf`, image: { type: 'jpeg', quality: 0.98 }, html2canvas: { scale: 2 }, jsPDF: { unit: 'mm', format: 'a4' } };
+        const opt = {
+            margin: 10,
+            filename: `${name}|${studentClass}|tugas bab 5.pdf`,
+            image: { type: 'jpeg', quality: 0.85 },
+            html2canvas: { scale: 1.5, useCORS: true },
+            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        };
 
         html2pdf().from(element).set(opt).outputPdf('datauristring').then(async function(pdfBase64) {
-            const payload = { fileName: `${name}|${studentClass}|tugas bab 5`, nama: name, kelas: studentClass, jawaban: answers, waktuKirim: new Date().toLocaleString('id-ID'), pdfBase64: pdfBase64 };
+            const payload = {
+                fileName: `${name}|${studentClass}|tugas bab 5`,
+                nama: name,
+                kelas: studentClass,
+                jawaban: answers,
+                waktuKirim: new Date().toLocaleString('id-ID'),
+                pdfBase64: pdfBase64
+            };
+
             try {
-                await fetch(GOOGLE_SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
-                showAlert('✅ Jawaban teks & PDF berhasil terkirim ke Google Drive!', 'success');
-            } catch (err) { showAlert('⚠️ Kendala koneksi pengiriman.', 'warning'); }
+                await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                showAlert('✅ 10 Soal Essay & File PDF Berhasil Terkirim ke Google Drive!', 'success');
+            } catch (error) {
+                console.error(error);
+                showAlert('⚠️ Kendala koneksi pengiriman. Silakan gunakan tombol "Download PDF".', 'warning');
+            }
         });
     }
 </script>
