@@ -203,4 +203,328 @@
             justify-content: flex-end;
             margin-top: 30px;
             padding-top: 20px;
-            border-top: 1
+            border-top: 1px solid var(--border-color);
+        }
+
+        .btn {
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary { background-color: #2563eb; color: white; }
+        .btn-primary:hover { background-color: #1d4ed8; }
+
+        .btn-success { background-color: #16a34a; color: white; }
+        .btn-success:hover { background-color: #15803d; }
+
+        .alert-box {
+            display: none;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        .alert-success { background-color: #dcfce7; color: #15803d; border: 1px solid #86efac; }
+        .alert-warning { background-color: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
+
+        @media print {
+            body { background: white; padding: 0; }
+            .container { box-shadow: none; border: none; max-width: 100%; padding: 0; }
+            .action-area, .status-badge, .btn-lock, .material-section { display: none !important; }
+            textarea.essay-input { border: none; border-bottom: 1px solid #000; border-radius: 0; }
+            .identity-card { background: none; border: 1px solid #000; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MODUL & UJI PEMAHAMAN - BAB II</h1>
+        <p>Informatika Kelas XI SMA/MA — Kurikulum Merdeka (Fase F)</p>
+    </div>
+
+    <!-- BAGIAN MATERI PEMBELAJARAN BAB II -->
+    <div class="material-section">
+        <h2>RINGKASAN MATERI: JENIS DAN SUMBER DATA</h2>
+        
+        <h3>2.1 Data Berdasarkan Bentuknya</h3>
+        <p>Data dikelompokkan menjadi data kuantitatif (berupa angka/numerik seperti nilai dan suhu) serta data kualitatif (berupa kategori, deskripsi kata, atau atribut seperti warna dan tingkat kepuasan)[span_1](start_span)[span_1](end_span).</p>
+
+        <h3>2.2 Data Berdasarkan Sifatnya</h3>
+        <p>Berdasarkan sifatnya, data dibagi menjadi data diskrit (hasil hitung utuh dan terputus-putus) serta data kontinu (data dalam rentang nilai desimal yang fleksibel)[span_2](start_span)[span_2](end_span).</p>
+
+        <h3>2.3 Data Primer dan Sekunder</h3>
+        <p>Berdasarkan sumber perolehannya, data primer diperoleh langsung dari sumber pertama (wawancara, kuesioner, eksperimen), sedangkan data sekunder diperoleh dari perantara atau arsip yang sudah ada[span_3](start_span)[span_3](end_span).</p>
+
+        <h3>2.4 Skala Pengukuran Data</h3>
+        <table class="material-table">
+            <thead>
+                <tr>
+                    <th>Skala</th>
+                    <th>Karakteristik Utama</th>
+                    <th>Contoh</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Nominal</td><td>Kategori tanpa tingkatan</td><td>Jenis kelamin, hobi[span_4](start_span)[span_4](end_span)</td></tr>
+                <tr><td>Ordinal</td><td>Kategori dengan urutan/tingkatan</td><td>Tingkat kepuasan (Puas, Cukup)[span_5](start_span)[span_5](end_span)</td></tr>
+                <tr><td>Interval</td><td>Angka berjarak sama tanpa nol mutlak</td><td>Suhu Celsius[span_6](start_span)[span_6](end_span)</td></tr>
+                <tr><td>Rasio</td><td>Angka berjarak sama dengan titik nol mutlak</td><td>Berat badan, tinggi badan[span_7](start_span)[span_7](end_span)</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- BAGIAN UJIAN / UJI PEMAHAMAN (10 SOAL ESSAY) -->
+    <div class="exam-section">
+        <div class="header" style="border:none; margin-bottom:20px;">
+            <h2 style="color:var(--primary-color);">UJI PEMAHAMAN ESSAY (10 SOAL)</h2>
+            <p>Jawablah 10 pertanyaan berikut secara mandiri dan kritis. Dilarang melakukan salin-tempel (copy-paste).</p>
+        </div>
+
+        <div id="statusAlert" class="alert-box"></div>
+
+        <!-- IDENTITAS SISWA -->
+        <div class="identity-card">
+            <h3>Identitas Peserta Didik</h3>
+            <div class="form-group">
+                <label for="studentName">Nama Lengkap Siswa:</label>
+                <input type="text" id="studentName" class="form-control" placeholder="Ketik nama lengkap Anda..." oninput="checkIdentityInputs()">
+            </div>
+            <div class="form-group">
+                <label for="studentClass">Kelas / Rombel:</label>
+                <input type="text" id="studentClass" class="form-control" placeholder="Contoh: XI IPA 1 / XI-F3" oninput="checkIdentityInputs()">
+            </div>
+            <div>
+                Status Identitas: 
+                <span id="lockBadge" class="status-badge badge-unlocked">Belum Terkunci</span>
+                <button type="button" class="btn-lock" id="btnManualLock" onclick="lockIdentity()" style="margin-left: 10px; cursor:pointer;" disabled>Kunci Identitas</button>
+            </div>
+        </div>
+
+        <!-- FORM 10 SOAL ESSAY -->
+        <form id="quizForm">
+            <!-- Soal 1 -->
+            <div class="question-card">
+                <div class="question-title">1. Data Kuantitatif vs Kualitatif:</div>
+                <p style="color: #475569; font-size: 0.95rem; margin-top:0;">Jelaskan perbedaan mendasar antara data kuantitatif dan kualitatif. Berikan masing-masing 2 contoh kasus nyata di lingkungan sekolah!</p>
+                <textarea class="essay-input" name="q1" placeholder="Tuliskan jawaban Anda..." required></textarea>
+            </div>
+
+            <!-- Soal 2 -->
+            <div class="question-card">
+                <div class="question-title">2. Data Diskrit dan Kontinu:</div>
+                <p style="color: #475569; font-size: 0.95rem; margin-top:0;">Apa yang dimaksud dengan data diskrit dan data kontinu? Mengapa tinggi badan termasuk data kontinu sedangkan jumlah siswa termasuk data diskrit?</p>
+                <textarea class="essay-input" name="q2" placeholder="Tuliskan jawaban Anda..." required></textarea>
+            </div>
+
+            <!-- Soal 3 -->
+            <div class="question-card">
+                <div class="question-title">3. Karakteristik Data Primer:</div>
+                <p style="color: #475569; font-size: 0.95rem; margin-top:0;">Kapan seorang peneliti atau analis data harus memilih menggunakan data primer? Apa kelebihan utama dari jenis data ini?</p>
+                <textarea class="essay-input" name="q3" placeholder="Tuliskan jawaban Anda..." required></textarea>
+            </div>
+
+            <!-- Soal 4 -->
+            <div class="question-card">
+                <div class="question-title">4. Pemanfaatan Data Sekunder:</div>
+                <p style="color: #475569; font-size: 0.95rem; margin-top:0;">Sebutkan dua contoh sumber data sekunder yang kredibel dan jelaskan tantangan atau risiko jika kita menggunakan data sekunder yang sudah kedaluwarsa!</p>
+                <textarea class="essay-input" name="q4" placeholder="Tuliskan jawaban Anda..." required></textarea>
+            </div>
+
+            <!-- Soal 5 -->
+            <div class="question-card">
+                <div class="question-title">5. Skala Nominal:</div>
+                <p style="color: #475569; font-size: 0.95rem; margin-top:0;">Berikan penjelasan mengapa skala nominal tidak memiliki urutan atau tingkatan matematis, beserta contoh atribut datanya.</p>
+                <textarea class="essay-input" name="q5" placeholder="Tuliskan jawaban Anda..." required></textarea>
+            </div>
+
+            <!-- Soal 6 -->
+            <div class="question-card">
+                <div class="question-title">6. Skala Ordinal:</div>
+                <p style="color: #475569; font-size: 0.95rem; margin-top:0;">Jelaskan apa yang membedakan skala ordinal dengan skala nominal, dan berikan contoh survei kepuasan yang menggunakan skala ini.</p>
+                <textarea class="essay-input" name="q6" placeholder="Tuliskan jawaban Anda..." required></textarea>
+            </div>
+
+            <!-- Soal 7 -->
+            <div class="question-card">
+                <div class="question-title">7. Skala Interval vs Rasio:</div>
+                <p style="color: #475569; font-size: 0.95rem; margin-top:0;">Apa perbedaan mendasar antara titik nol pada skala interval dan titik nol mutlak pada skala rasio? Berikan contohnya.</p>
+                <textarea class="essay-input" name="q7" placeholder="Tuliskan jawaban Anda..." required></textarea>
+            </div>
+
+            <!-- Soal 8 -->
+            <div class="question-card">
+                <div class="question-title">8. Kualitas dan Keandalan Data:</div>
+                <p style="color: #475569; font-size: 0.95rem; margin-top:0;">Bagaimana kualitas sumber data dapat memengaruhi validitas hasil analisis akhir? Jelaskan argumen Anda.</p>
+                <textarea class="essay-input" name="q8" placeholder="Tuliskan jawaban Anda..." required></textarea>
+            </div>
+
+            <!-- Soal 9 -->
+            <div class="question-card">
+                <div class="question-title">9. Studi Kasus Pengumpulan Data Sekolah:</div>
+                <p style="color: #475569; font-size: 0.95rem; margin-top:0;">Jika OSIS ingin meneliti minat ekstrakurikuler siswa baru melalui kuesioner langsung, termasuk jenis data apakah yang mereka kumpulkan? Jelaskan alasannya.</p>
+                <textarea class="essay-input" name="q9" placeholder="Tuliskan jawaban Anda..." required></textarea>
+            </div>
+
+            <!-- Soal 10 -->
+            <div class="question-card">
+                <div class="question-title">10. Analisis Pemilihan Metode:</div>
+                <p style="color: #475569; font-size: 0.95rem; margin-top:0;">Uraikan skenario di mana seorang peneliti terpaksa mengombinasikan data primer dan data sekunder secara bersamaan dalam sebuah riset!</p>
+                <textarea class="essay-input" name="q10" placeholder="Tuliskan jawaban Anda..." required></textarea>
+            </div>
+
+            <!-- TOMBOL AKSI -->
+            <div class="action-area">
+                <button type="button" class="btn btn-primary" onclick="generatePDF()">
+                    💾 Download PDF Ujian
+                </button>
+                <button type="button" class="btn btn-success" onclick="submitToDrive()">
+                    🚀 Kirim ke Google Drive
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    let isIdentityLocked = false;
+    // URL GOOGLE APPS SCRIPT WEB APP ANDA
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz8YC9A1GTbds-hstQUFd46VHlJP-vNcR-MEDvPmYDlh4v_0s7i6xIKGPzkW27e8IEXuQ/exec"; 
+
+    // --- PROTEKSI ANTI COPY-PASTE & DRAG PADA AREA UJIAN ---
+    document.addEventListener('copy', (e) => e.preventDefault());
+    document.addEventListener('paste', (e) => e.preventDefault());
+    document.addEventListener('cut', (e) => e.preventDefault());
+    document.addEventListener('contextmenu', (e) => e.preventDefault());
+    document.addEventListener('dragstart', (e) => e.preventDefault());
+
+    // --- MANAJEMEN KUNCI IDENTITAS ---
+    function checkIdentityInputs() {
+        const name = document.getElementById('studentName').value.trim();
+        const studentClass = document.getElementById('studentClass').value.trim();
+        const btnLock = document.getElementById('btnManualLock');
+        btnLock.disabled = !(name && studentClass);
+    }
+
+    function lockIdentity() {
+        const nameInput = document.getElementById('studentName');
+        const classInput = document.getElementById('studentClass');
+
+        if (!nameInput.value.trim() || !classInput.value.trim()) {
+            showAlert('Mohon isi Nama Lengkap dan Kelas sebelum melanjutkan!', 'warning');
+            return false;
+        }
+
+        if (!isIdentityLocked) {
+            nameInput.disabled = true;
+            classInput.disabled = true;
+            isIdentityLocked = true;
+
+            const badge = document.getElementById('lockBadge');
+            badge.textContent = "Terkunci Otomatis";
+            badge.className = "status-badge badge-locked";
+            document.getElementById('btnManualLock').style.display = 'none';
+        }
+        return true;
+    }
+
+    // Otomatis kunci identitas saat siswa mulai mengetik jawaban essay pertama kali
+    document.querySelectorAll('.essay-input').forEach(textarea => {
+        textarea.addEventListener('focus', () => {
+            if (!isIdentityLocked) {
+                const locked = lockIdentity();
+                if (!locked) {
+                    textarea.blur();
+                }
+            }
+        });
+    });
+
+    // --- HELPER ALERT ---
+    function showAlert(message, type) {
+        const alertBox = document.getElementById('statusAlert');
+        alertBox.style.display = 'block';
+        alertBox.textContent = message;
+        alertBox.className = type === 'success' ? 'alert-box alert-success' : 'alert-box alert-warning';
+        window.scrollTo({ top: alertBox.offsetTop - 50, behavior: 'smooth' });
+    }
+
+    // --- DOWNLOAD / CETAK PDF (Format nama file: nama_siswa|kelas|tugas bab 2.pdf) ---
+    function generatePDF() {
+        const name = document.getElementById('studentName').value.trim();
+        const studentClass = document.getElementById('studentClass').value.trim();
+
+        if (!name || !studentClass) {
+            showAlert('Lengkapi Nama dan Kelas sebelum mengunduh PDF!', 'warning');
+            return;
+        }
+
+        const formattedTitle = `${name}|${studentClass}|Tugas Bab 2`;
+        const originalTitle = document.title;
+        document.title = formattedTitle;
+
+        window.print();
+
+        document.title = originalTitle;
+    }
+
+    // --- PENGIRIMAN OTOMATIS KE GOOGLE DRIVE & SHEETS ---
+    async function submitToDrive() {
+        const name = document.getElementById('studentName').value.trim();
+        const studentClass = document.getElementById('studentClass').value.trim();
+
+        if (!name || !studentClass) {
+            showAlert('Isi identitas Nama dan Kelas terlebih dahulu!', 'warning');
+            return;
+        }
+
+        let answers = {};
+        let allFilled = true;
+        for (let i = 1; i <= 10; i++) {
+            let val = document.querySelector(`textarea[name="q${i}"]`).value.trim();
+            if (!val) allFilled = false;
+            answers[`soal${i}`] = val;
+        }
+
+        if (!allFilled) {
+            showAlert('Semua dari 10 soal essay wajib diisi sebelum dikirim!', 'warning');
+            return;
+        }
+
+        const payload = {
+            fileName: `${name}|${studentClass}|Tugas Bab 2`,
+            nama: name,
+            kelas: studentClass,
+            jawaban: answers,
+            waktuKirim: new Date().toLocaleString('id-ID')
+        };
+
+        showAlert('Sedang mengirim jawaban ke Google Drive & Spreadsheet...', 'success');
+
+        try {
+            await fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            showAlert('✅ Jawaban berhasil terkirim ke Google Drive Pengajar!', 'success');
+        } catch (error) {
+            console.error(error);
+            showAlert('⚠️ Terjadi kendala koneksi saat pengiriman otomatis. Silakan gunakan tombol "Download PDF" sebagai alternatif!', 'warning');
+        }
+    }
+</script>
+
+</body>
+</html>
