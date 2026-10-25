@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi & Uji Pemahaman Bab 3 - Tahapan Analisis Data</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+            --border-color: #cbd5e1;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border: 1px solid var(--border-color);
+        }
+
+        .header {
+            text-align: center;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: var(--primary-color);
+            margin: 0 0 8px 0;
+            font-size: 1.8rem;
+        }
+
+        .header p {
+            color: #64748b;
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        /* Styling Materi */
+        .material-section {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 40px;
+        }
+
+        .material-section h2 {
+            color: var(--primary-color);
+            font-size: 1.4rem;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 8px;
+            margin-top: 0;
+        }
+
+        .material-section h3 {
+            color: #34495e;
+            font-size: 1.1rem;
+            margin-top: 20px;
+        }
+
+        .material-section p, .material-section li {
+            line-height: 1.6;
+            color: #475569;
+        }
+
+        ol.material-list {
+            margin-left: 20px;
+            padding-left: 0;
+        }
+
+        ol.material-list li {
+            margin-bottom: 8px;
+        }
+
+        /* Area Form Ujian */
+        .exam-section {
+            border-top: 3px dashed var(--border-color);
+            padding-top: 30px;
+        }
+
+        .identity-card {
+            background-color: #f1f5f9;
+            border: 1px solid var(--border-color);
+            border-left: 5px solid var(--secondary-color);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        .identity-card h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #475569;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+
+        .form-control:disabled {
+            background-color: #e2e8f0;
+            color: #64748b;
+            cursor: not-allowed;
+            font-weight: bold;
+        }
+
+        .status-badge {
+            display: inline-block;
+            font-size: 0.8rem;
+            padding: 4px 8px;
+            border-radius: 4px;
+            margin-top: 5px;
+            font-weight: bold;
+        }
+
+        .badge-unlocked { background: #fef3c7; color: #92400e; }
+        .badge-locked { background: #dcfce7; color: #166534; }
+
+        .question-card {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .question-title {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 1.05rem;
+            line-height: 1.5;
+        }
+
+        textarea.essay-input {
+            width: 100%;
+            min-height: 100px;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            resize: vertical;
+            font-family: inherit;
+            -webkit-user-select: text !important;
+            user-select: text !important;
+        }
+
+        .action-area {
+            display: flex;
+            gap: 15px;
+            justify-content: flex-end;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .btn {
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary { background-color: #2563eb; color: white; }
+        .btn-primary:hover { background-color: #1d4ed8; }
+
+        .btn-success { background-color: #16a34a; color: white; }
+        .btn-success:hover { background-color: #15803d; }
+
+        .alert-box {
+            display: none;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        .alert-success { background-color: #dcfce7; color: #15803d; border: 1px solid #86efac; }
+        .alert-warning { background-color: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
+
+        @media print {
+            body { background: white; padding: 0; }
+            .container { box-shadow: none; border: none; max-width: 100%; padding: 0; }
+            .action-area, .status-badge, .btn-lock, .material-section { display: none !important; }
+            textarea.essay-input { border: none; border-bottom: 1px solid #000; border-radius: 0; }
+            .identity-card { background: none; border: 1px solid #000; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MODUL & UJI PEMAHAMAN - BAB III</h1>
+        <p>Informatika Kelas XI SMA/MA — Kurikulum Merdeka (Fase F)</p>
+    </div>
+
+    <!-- BAGIAN MATERI PEMBELAJARAN BAB III -->
+    <div class="material-section">
+        <h2>RINGKASAN MATERI: TAHAPAN ANALISIS DATA</h2>
+        
+        <h3>Proses Sistematis Pengolahan Data</h3>
+        <p>Analisis data bukanlah aktivitas instan yang langsung menghasilkan kesimpulan, melainkan serangkaian tahapan sistematis yang harus dilalui secara runtut agar informasi yang dihasilkan akurat dan valid.</p>
+
+        <ol class="material-list">
+            <li><strong>Menentukan Pertanyaan/Masalah:</strong> Merumuskan tujuan analisis serta pertanyaan spesifik yang ingin dijawab melalui data.</li>
+            <li><strong>Pengumpulan Data (Data Collection):</strong> Mengumpulkan fakta, angka, atau catatan dari sumber primer maupun sekunder yang relevan dengan topik.</li>
+            <li><strong>Pembersihan Data (Data Cleaning):</strong> Memeriksa dan memperbaiki kesalahan data, seperti menghapus duplikat, menangani nilai kosong (missing values), dan mengoreksi data yang salah ketik.</li>
+            <li><strong>Pengorganisasian & Transformasi Data:</strong> Menyusun data ke dalam format yang terstruktur (seperti tabel atau spreadsheet) agar lebih mudah dikelola.</li>
+            <li><strong>Analisis dan Pemodelan:</strong> Menerapkan metode statistik dasar atau komputasi untuk mencari pola, tren, korelasi, dan ringkasan nilai (seperti rata-rata atau persentase).</li>
+            <li><strong>Visualisasi Data:</strong> Menyajikan hasil analisis dalam bentuk grafik, diagram, atau chart agar mudah dipahami oleh pihak lain.</li>
+            <li><strong>Interpretasi dan Pengambilan Kesimpulan:</strong> Menafsirkan makna dari hasil analisis secara objektif untuk menjawab rumusan masalah awal dan merumuskan rekomendasi keputusan.</li>
+        </ol>
+    </div>
+
+    <!-- BAGIAN UJIAN / UJI PEMAHAMAN (10 SOAL ESSAY) -->
+    <div class="exam-section">
+        <div class="header" style="border:none; margin-bottom:20px;">
+            <h2 style="color:var(--primary-color);">UJI PEMAHAMAN ESSAY (10 SOAL)</h2>
+            <p>Jawablah 10 pertanyaan berikut berdasarkan analisis konsep Bab 3. Dilarang menyalin-menempel teks dari luar.</p>
+        </div>
+
+        <div id="statusAlert" class="alert-box"></div>
+
+        <!-- IDENTITAS SISWA -->
+        <div class="identity-card">
+            <h3>Identitas Peserta Didik</h3>
+            <div class="form-group">
+                <label for="studentName">Nama Lengkap Siswa:</label>
+                <input type="text" id="studentName" class="form-control" placeholder="Ketik nama lengkap Anda..." oninput="checkIdentityInputs()">
+            </div>
+            <div class="form-group">
+                <label for="studentClass">Kelas / Rombel:</label>
+                <input type="text" id="studentClass" class="form-control" placeholder="Contoh: XI IPA 1 / XI-F3" oninput="checkIdentityInputs()">
+            </div>
+            <div>
+                Status Identitas: 
+                <span id="lockBadge" class="status-badge badge-unlocked">Belum Terkunci</span>
+                <button type="button" class="btn-lock" id="btnManualLock" onclick="lockIdentity()" style="margin-left: 10px; cursor:pointer;" disabled>Kunci Identitas</button>
+            </div>
+        </div>
+
+        <!-- FORM 10 SOAL ESSAY -->
+        <form id="quizForm">
+            <!-- Soal 1 -->
+            <div class="question-card">
+                <div class="question-title">1. Urutan Tahapan Analisis:</div>
+                <p style="color: #475569; font-size: 0.95rem; margin-top:0;">Mengapa proses analisis data harus dilakukan secara bertahap dan sistematis? Apa risikonya jika ada tahapan yang dilewati?</p>
+                <textarea class="essay-input" name="q1" placeholder="Tuliskan jawaban Anda..." required></textarea>
+            </div>
+
+            <!-- Soal 2 -->
+            <div class="question-card">
+                <div class="question-title">2. Perumusan Masalah Awal:</div>
+                <p style="color: #475569; font-size: 0.95rem; margin-top:0;">Jelaskan mengapa menentukan pertanyaan atau rumusan masalah menjadi langkah paling awal yang krusial sebelum data dikumpulkan.</p>
+                <textarea class="essay-input" name="q2" placeholder="Tuliskan jawaban Anda..." required></textarea>
+            </div>
+
+            <!-- Soal 3 -->
+            <div class="question-card">
+                <div class="question-title">3. Esensi Pembersihan Data (Data Cleaning):</div>
+                <p style="color: #475569; font-size: 0.95rem; margin-top:0;">Apa yang dimaksud dengan pembersihan data (data cleaning), dan sebutkan dua contoh masalah umum pada data mentah yang harus dibersihkan!</p>
+                <textarea class="essay-input" name="q3" placeholder="Tuliskan jawaban Anda..." required></textarea>
+            </div>
+
+            <!-- Soal 4 -->
+            <div class="question-card">
+                <div class="question-title">4. Pengorganisasian Struktur Data:</div>
+                <p style="color: #475569; font-size: 0.95rem; margin-top:0;">Bagaimana cara mengorganisasikan data mentah yang berantakan ke dalam format tabel agar mempermudah proses komputasi selanjutnya?</p>
+                <textarea class="essay-input" name="q4" placeholder="Tuliskan jawaban Anda..." required></textarea>
+            </div>
+
+            <!-- Soal 5 -->
+            <div class="question-card">
+                <div class="question-title">5. Proses Pengolahan & Perhitungan:</div>
+                <p style="color: #475569; font-size: 0.95rem; margin-top:0;">Jelaskan aktivitas yang terjadi pada tahap pengolahan data (processing/analysis) setelah data selesai dibersihkan dan diorganisasikan.</p>
+                <textarea class="essay-input" name="q5" placeholder="Tuliskan jawaban Anda..." required></textarea>
+            </div>
+
+            <!-- Soal 6 -->
+            <div class="question-card">
+                <div class="question-title">6. Peran Visualisasi dalam Tahapan:</div>
+                <p style="color: #475569; font-size: 0.95rem; margin-top:0;">Pada tahap ke berapa visualisasi data biasanya diterapkan, dan mengapa representasi visual penting untuk menjembatani angka dengan pemangku kepentingan?</p>
+                <textarea class="essay-input" name="q6" placeholder="Tuliskan jawaban Anda..." required></textarea>
+            </div>
+
+            <!-- Soal 7 -->
+            <div class="question-card">
+                <div class="question-title">7. Interpretasi dan Objektivitas:</div>
+                <p style="color: #475569; font-size: 0.95rem; margin-top:0;">Mengapa penafsiran (interpretasi) hasil analisis menuntut sikap yang objektif dan tidak boleh dipengaruhi oleh asumsi pribadi peneliti?</p>
+                <textarea class="essay-input" name="q7" placeholder="Tuliskan jawaban Anda..." required></textarea>
+            </div>
+
+            <!-- Soal 8 -->
+            <div class="question-card">
+                <div class="question-title">8. Penarikan Kesimpulan:</div>
+                <p style="color: #475569; font-size: 0.95rem; margin-top:0;">Bagaimana kriteria kesimpulan yang baik dan valid ditarik di akhir tahapan analisis berdasarkan temuan data yang telah diolah?</p>
+                <textarea class="essay-input" name="q8" placeholder="Tuliskan jawaban Anda..." required></textarea>
+            </div>
+
+            <!-- Soal 9 -->
+            <div class="question-card">
+                <div class="question-title">9. Studi Kasus Alur Kerja Analisis:</div>
+                <p style="color: #475569; font-size: 0.95rem; margin-top:0;">Jika sebuah toko online ingin menganalisis produk mana yang paling sering diretur (dikembalikan) oleh pembeli, uraikan 4 tahapan awal yang harus mereka lalui!</p>
+                <textarea class="essay-input" name="q9" placeholder="Tuliskan jawaban Anda..." required></textarea>
+            </div>
+
+            <!-- Soal 10 -->
+            <div class="question-card">
+                <div class="question-title">10. Evaluasi Siklus Analisis Data:</div>
+                <p style="color: #475569; font-size: 0.95rem; margin-top:0;">Apakah siklus tahapan analisis data berhenti setelah kesimpulan dilaporkan? Jelaskan mengapa proses analisis sering kali bersifat berkelanjutan (iteratif).</p>
+                <textarea class="essay-input" name="q10" placeholder="Tuliskan jawaban Anda..." required></textarea>
+            </div>
+
+            <!-- TOMBOL AKSI -->
+            <div class="action-area">
+                <button type="button" class="btn btn-primary" onclick="generatePDF()">
+                    💾 Download PDF Ujian
+                </button>
+                <button type="button" class="btn btn-success" onclick="submitToDrive()">
+                    🚀 Kirim ke Google Drive
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    let isIdentityLocked = false;
+    // URL GOOGLE APPS SCRIPT WEB APP (Menggunakan database Google Drive yang sama)
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec"; 
+
+    // --- PROTEKSI ANTI COPY-PASTE & DRAG ---
+    document.addEventListener('copy', (e) => e.preventDefault());
+    document.addEventListener('paste', (e) => e.preventDefault());
+    document.addEventListener('cut', (e) => e.preventDefault());
+    document.addEventListener('contextmenu', (e) => e.preventDefault());
+    document.addEventListener('dragstart', (e) => e.preventDefault());
+
+    function checkIdentityInputs() {
+        const name = document.getElementById('studentName').value.trim();
+        const studentClass = document.getElementById('studentClass').value.trim();
+        const btnLock = document.getElementById('btnManualLock');
+        btnLock.disabled = !(name && studentClass);
+    }
+
+    function lockIdentity() {
+        const nameInput = document.getElementById('studentName');
+        const classInput = document.getElementById('studentClass');
+
+        if (!nameInput.value.trim() || !classInput.value.trim()) {
+            showAlert('Mohon isi Nama Lengkap dan Kelas sebelum melanjutkan!', 'warning');
+            return false;
+        }
+
+        if (!isIdentityLocked) {
+            nameInput.disabled = true;
+            classInput.disabled = true;
+            isIdentityLocked = true;
+
+            const badge = document.getElementById('lockBadge');
+            badge.textContent = "Terkunci Otomatis";
+            badge.className = "status-badge badge-locked";
+            document.getElementById('btnManualLock').style.display = 'none';
+        }
+        return true;
+    }
+
+    document.querySelectorAll('.essay-input').forEach(textarea => {
+        textarea.addEventListener('focus', () => {
+            if (!isIdentityLocked) {
+                const locked = lockIdentity();
+                if (!locked) {
+                    textarea.blur();
+                }
+            }
+        });
+    });
+
+    function showAlert(message, type) {
+        const alertBox = document.getElementById('statusAlert');
+        alertBox.style.display = 'block';
+        alertBox.textContent = message;
+        alertBox.className = type === 'success' ? 'alert-box alert-success' : 'alert-box alert-warning';
+        window.scrollTo({ top: alertBox.offsetTop - 50, behavior: 'smooth' });
+    }
+
+    // --- DOWNLOAD / CETAK PDF (Format nama file: nama_siswa|kelas|tugas bab 3.pdf) ---
+    function generatePDF() {
+        const name = document.getElementById('studentName').value.trim();
+        const studentClass = document.getElementById('studentClass').value.trim();
+
+        if (!name || !studentClass) {
+            showAlert('Lengkapi Nama dan Kelas sebelum mengunduh PDF!', 'warning');
+            return;
+        }
+
+        const formattedTitle = `${name}|${studentClass}|Tugas Bab 3`;
+        const originalTitle = document.title;
+        document.title = formattedTitle;
+
+        window.print();
+
+        document.title = originalTitle;
+    }
+
+    // --- PENGIRIMAN OTOMATIS KE GOOGLE DRIVE ---
+    async function submitToDrive() {
+        const name = document.getElementById('studentName').value.trim();
+        const studentClass = document.getElementById('studentClass').value.trim();
+
+        if (!name || !studentClass) {
+            showAlert('Isi identitas Nama dan Kelas terlebih dahulu!', 'warning');
+            return;
+        }
+
+        let answers = {};
+        let allFilled = true;
+        for (let i = 1; i <= 10; i++) {
+            let val = document.querySelector(`textarea[name="q${i}"]`).value.trim();
+            if (!val) allFilled = false;
+            answers[`soal${i}`] = val;
+        }
+
+        if (!allFilled) {
+            showAlert('Semua dari 10 soal essay wajib diisi sebelum dikirim!', 'warning');
+            return;
+        }
+
+        const payload = {
+            fileName: `${name}|${studentClass}|Tugas Bab 3`,
+            nama: name,
+            kelas: studentClass,
+            jawaban: answers,
+            waktuKirim: new Date().toLocaleString('id-ID')
+        };
+
+        showAlert('Sedang mengirim jawaban ke Google Drive...', 'success');
+
+        try {
+            await fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            showAlert('✅ Jawaban berhasil terkirim ke Google Drive Pengajar!', 'success');
+        } catch (error) {
+            console.error(error);
+            showAlert('⚠️ Terjadi kendala koneksi saat pengiriman otomatis. Gunakan tombol "Download PDF" sebagai alternatif!', 'warning');
+        }
+    }
+</script>
+
+</body>
+</html>
