@@ -248,16 +248,16 @@
         <h2>RINGKASAN MATERI: TAHAPAN ANALISIS DATA</h2>
         
         <h3>Proses Sistematis Pengolahan Data</h3>
-        <p>Analisis data bukanlah aktivitas instan yang langsung menghasilkan kesimpulan, melainkan serangkaian tahapan sistematis yang harus dilalui secara runtut agar informasi yang dihasilkan akurat dan valid.</p>
+        <p>Analisis data bukanlah aktivitas instan yang langsung menghasilkan kesimpulan, melainkan serangkaian tahapan sistematis yang harus dilalui secara runtut agar informasi yang dihasilkan akurat dan valid[span_1](start_span)[span_1](end_span).</p>
 
         <ol class="material-list">
-            <li><strong>Menentukan Pertanyaan/Masalah:</strong> Merumuskan tujuan analisis serta pertanyaan spesifik yang ingin dijawab melalui data.</li>
-            <li><strong>Pengumpulan Data (Data Collection):</strong> Mengumpulkan fakta, angka, atau catatan dari sumber primer maupun sekunder yang relevan dengan topik.</li>
-            <li><strong>Pembersihan Data (Data Cleaning):</strong> Memeriksa dan memperbaiki kesalahan data, seperti menghapus duplikat, menangani nilai kosong (missing values), dan mengoreksi data yang salah ketik.</li>
-            <li><strong>Pengorganisasian & Transformasi Data:</strong> Menyusun data ke dalam format yang terstruktur (seperti tabel atau spreadsheet) agar lebih mudah dikelola.</li>
-            <li><strong>Analisis dan Pemodelan:</strong> Menerapkan metode statistik dasar atau komputasi untuk mencari pola, tren, korelasi, dan ringkasan nilai (seperti rata-rata atau persentase).</li>
-            <li><strong>Visualisasi Data:</strong> Menyajikan hasil analisis dalam bentuk grafik, diagram, atau chart agar mudah dipahami oleh pihak lain.</li>
-            <li><strong>Interpretasi dan Pengambilan Kesimpulan:</strong> Menafsirkan makna dari hasil analisis secara objektif untuk menjawab rumusan masalah awal dan merumuskan rekomendasi keputusan.</li>
+            <li><strong>Menentukan Pertanyaan/Masalah:</strong> Merumuskan tujuan analisis serta pertanyaan spesifik yang ingin dijawab melalui data[span_2](start_span)[span_2](end_span).</li>
+            <li><strong>Pengumpulan Data (Data Collection):</strong> Mengumpulkan fakta, angka, atau catatan dari sumber primer maupun sekunder yang relevan[span_3](start_span)[span_3](end_span).</li>
+            <li><strong>Pembersihan Data (Data Cleaning):</strong> Memeriksa dan memperbaiki kesalahan data, seperti menghapus duplikat dan menangani nilai kosong[span_4](start_span)[span_4](end_span).</li>
+            <li><strong>Pengorganisasian & Transformasi Data:</strong> Menyusun data ke dalam format terstruktur (seperti tabel atau spreadsheet) agar mudah dikelola[span_5](start_span)[span_5](end_span).</li>
+            <li><strong>Analisis dan Pemodelan:</strong> Menerapkan metode statistik dasar atau komputasi untuk mencari pola, tren, dan ringkasan nilai[span_6](start_span)[span_6](end_span).</li>
+            <li><strong>Visualisasi Data:</strong> Menyajikan hasil analisis dalam bentuk grafik atau diagram agar mudah dipahami[span_7](start_span)[span_7](end_span).</li>
+            <li><strong>Interpretasi dan Pengambilan Kesimpulan:</strong> Menafsirkan makna hasil analisis secara objektif untuk menjawab rumusan masalah awal[span_8](start_span)[span_8](end_span).</li>
         </ol>
     </div>
 
@@ -265,7 +265,7 @@
     <div class="exam-section">
         <div class="header" style="border:none; margin-bottom:20px;">
             <h2 style="color:var(--primary-color);">UJI PEMAHAMAN ESSAY (10 SOAL)</h2>
-            <p>Jawablah 10 pertanyaan berikut berdasarkan analisis konsep Bab 3. Dilarang menyalin-menempel teks dari luar.</p>
+            <p>Jawablah 10 pertanyaan berikut secara mandiri dan kritis. Dilarang melakukan salin-tempel (copy-paste).</p>
         </div>
 
         <div id="statusAlert" class="alert-box"></div>
@@ -375,16 +375,17 @@
 
 <script>
     let isIdentityLocked = false;
-    // URL GOOGLE APPS SCRIPT WEB APP (Menggunakan database Google Drive yang sama)
+    // URL GOOGLE APPS SCRIPT WEB APP ANDA
     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz8YC9A1GTbds-hstQUFd46VHlJP-vNcR-MEDvPmYDlh4v_0s7i6xIKGPzkW27e8IEXuQ/exec"; 
 
-    // --- PROTEKSI ANTI COPY-PASTE & DRAG ---
+    // --- PROTEKSI ANTI COPY-PASTE & DRAG PADA AREA UJIAN ---
     document.addEventListener('copy', (e) => e.preventDefault());
     document.addEventListener('paste', (e) => e.preventDefault());
     document.addEventListener('cut', (e) => e.preventDefault());
     document.addEventListener('contextmenu', (e) => e.preventDefault());
     document.addEventListener('dragstart', (e) => e.preventDefault());
 
+    // --- MANAJEMEN KUNCI IDENTITAS ---
     function checkIdentityInputs() {
         const name = document.getElementById('studentName').value.trim();
         const studentClass = document.getElementById('studentClass').value.trim();
@@ -414,6 +415,7 @@
         return true;
     }
 
+    // Otomatis kunci identitas saat siswa mulai mengetik jawaban essay pertama kali
     document.querySelectorAll('.essay-input').forEach(textarea => {
         textarea.addEventListener('focus', () => {
             if (!isIdentityLocked) {
@@ -425,6 +427,7 @@
         });
     });
 
+    // --- HELPER ALERT ---
     function showAlert(message, type) {
         const alertBox = document.getElementById('statusAlert');
         alertBox.style.display = 'block';
@@ -452,7 +455,7 @@
         document.title = originalTitle;
     }
 
-    // --- PENGIRIMAN OTOMATIS KE GOOGLE DRIVE ---
+    // --- PENGIRIMAN OTOMATIS KE GOOGLE DRIVE & SHEETS ---
     async function submitToDrive() {
         const name = document.getElementById('studentName').value.trim();
         const studentClass = document.getElementById('studentClass').value.trim();
@@ -483,7 +486,7 @@
             waktuKirim: new Date().toLocaleString('id-ID')
         };
 
-        showAlert('Sedang mengirim jawaban ke Google Drive...', 'success');
+        showAlert('Sedang mengirim jawaban ke Google Drive & Spreadsheet...', 'success');
 
         try {
             await fetch(GOOGLE_SCRIPT_URL, {
@@ -496,7 +499,7 @@
             showAlert('✅ Jawaban berhasil terkirim ke Google Drive Pengajar!', 'success');
         } catch (error) {
             console.error(error);
-            showAlert('⚠️ Terjadi kendala koneksi saat pengiriman otomatis. Gunakan tombol "Download PDF" sebagai alternatif!', 'warning');
+            showAlert('⚠️ Terjadi kendala koneksi saat pengiriman otomatis. Silakan gunakan tombol "Download PDF" sebagai alternatif!', 'warning');
         }
     }
 </script>
