@@ -4,244 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Materi & Uji Pemahaman Bab 6 - Analisis Rumus & Visualisasi Data</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <style>
-        :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #3498db;
-            --accent-color: #e74c3c;
-            --bg-color: #f4f7f6;
-            --card-bg: #ffffff;
-            --border-color: #cbd5e1;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: #333;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 900px;
-            background: var(--card-bg);
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            border: 1px solid var(--border-color);
-        }
-
-        .header {
-            text-align: center;
-            border-bottom: 2px solid var(--primary-color);
-            padding-bottom: 20px;
-            margin-bottom: 30px;
-        }
-
-        .header h1 {
-            color: var(--primary-color);
-            margin: 0 0 8px 0;
-            font-size: 1.8rem;
-        }
-
-        .header p {
-            color: #64748b;
-            margin: 0;
-            font-size: 0.95rem;
-        }
-
-        /* Styling Materi */
-        .material-section {
-            background: #f8fafc;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 25px;
-            margin-bottom: 40px;
-        }
-
-        .material-section h2 {
-            color: var(--primary-color);
-            font-size: 1.4rem;
-            border-bottom: 2px solid var(--secondary-color);
-            padding-bottom: 8px;
-            margin-top: 0;
-        }
-
-        .material-section h3 {
-            color: #34495e;
-            font-size: 1.1rem;
-            margin-top: 20px;
-        }
-
-        .material-section p, .material-section li {
-            line-height: 1.6;
-            color: #475569;
-        }
-
-        table.material-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 15px 0;
-            font-size: 0.95rem;
-        }
-
-        table.material-table th, table.material-table td {
-            padding: 10px 12px;
-            border: 1px solid #cbd5e1;
-            text-align: left;
-        }
-
-        table.material-table th {
-            background-color: #e2e8f0;
-            color: var(--primary-color);
-        }
-
-        /* Area Form Ujian */
-        .exam-section {
-            border-top: 3px dashed var(--border-color);
-            padding-top: 30px;
-        }
-
-        .identity-card {
-            background-color: #f1f5f9;
-            border: 1px solid var(--border-color);
-            border-left: 5px solid var(--secondary-color);
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 30px;
-        }
-
-        .identity-card h3 {
-            margin-top: 0;
-            color: var(--primary-color);
-            font-size: 1.1rem;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: 600;
-            color: #475569;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 10px 12px;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: var(--secondary-color);
-            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
-        }
-
-        .form-control:disabled {
-            background-color: #e2e8f0;
-            color: #64748b;
-            cursor: not-allowed;
-            font-weight: bold;
-        }
-
-        .status-badge {
-            display: inline-block;
-            font-size: 0.8rem;
-            padding: 4px 8px;
-            border-radius: 4px;
-            margin-top: 5px;
-            font-weight: bold;
-        }
-
+        :root { --primary-color: #2c3e50; --secondary-color: #3498db; --bg-color: #f4f7f6; --card-bg: #ffffff; --border-color: #cbd5e1; }
+        * { box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg-color); color: #333; margin: 0; padding: 20px; display: flex; justify-content: center; }
+        .container { width: 100%; max-width: 900px; background: var(--card-bg); padding: 40px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border: 1px solid var(--border-color); }
+        .header { text-align: center; border-bottom: 2px solid var(--primary-color); padding-bottom: 20px; margin-bottom: 30px; }
+        .header h1 { color: var(--primary-color); margin: 0 0 8px 0; font-size: 1.8rem; }
+        .material-section { background: #f8fafc; border: 1px solid var(--border-color); border-radius: 8px; padding: 25px; margin-bottom: 40px; }
+        .material-section h2 { color: var(--primary-color); font-size: 1.4rem; border-bottom: 2px solid var(--secondary-color); padding-bottom: 8px; margin-top: 0; }
+        table.material-table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 0.95rem; }
+        table.material-table th, table.material-table td { padding: 10px 12px; border: 1px solid #cbd5e1; text-align: left; }
+        table.material-table th { background-color: #e2e8f0; color: var(--primary-color); }
+        .exam-section { border-top: 3px dashed var(--border-color); padding-top: 30px; }
+        .identity-card { background-color: #f1f5f9; border: 1px solid var(--border-color); border-left: 5px solid var(--secondary-color); padding: 20px; border-radius: 8px; margin-bottom: 30px; }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: 600; color: #475569; }
+        .form-control { width: 100%; padding: 10px 12px; border: 1px solid var(--border-color); border-radius: 6px; font-size: 1rem; }
+        .form-control:disabled { background-color: #e2e8f0; color: #64748b; font-weight: bold; }
+        .status-badge { display: inline-block; font-size: 0.8rem; padding: 4px 8px; border-radius: 4px; margin-top: 5px; font-weight: bold; }
         .badge-unlocked { background: #fef3c7; color: #92400e; }
         .badge-locked { background: #dcfce7; color: #166534; }
-
-        .question-card {
-            background: #ffffff;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 25px;
-        }
-
-        .question-title {
-            font-weight: 600;
-            color: var(--primary-color);
-            margin-bottom: 10px;
-            font-size: 1.05rem;
-            line-height: 1.5;
-        }
-
-        textarea.essay-input {
-            width: 100%;
-            min-height: 100px;
-            padding: 10px;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            resize: vertical;
-            font-family: inherit;
-            -webkit-user-select: text !important;
-            user-select: text !important;
-        }
-
-        .action-area {
-            display: flex;
-            gap: 15px;
-            justify-content: flex-end;
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid var(--border-color);
-        }
-
-        .btn {
-            padding: 12px 24px;
-            font-size: 1rem;
-            font-weight: 600;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: background 0.2s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
+        .question-card { background: #ffffff; border: 1px solid var(--border-color); border-radius: 8px; padding: 20px; margin-bottom: 25px; }
+        .question-title { font-weight: 600; color: var(--primary-color); margin-bottom: 10px; font-size: 1.05rem; }
+        textarea.essay-input { width: 100%; min-height: 100px; padding: 10px; border: 1px solid var(--border-color); border-radius: 6px; resize: vertical; -webkit-user-select: text !important; user-select: text !important; }
+        .action-area { display: flex; gap: 15px; justify-content: flex-end; margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--border-color); }
+        .btn { padding: 12px 24px; font-size: 1rem; font-weight: 600; border: none; border-radius: 6px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; }
         .btn-primary { background-color: #2563eb; color: white; }
-        .btn-primary:hover { background-color: #1d4ed8; }
-
         .btn-success { background-color: #16a34a; color: white; }
-        .btn-success:hover { background-color: #15803d; }
-
-        .alert-box {
-            display: none;
-            padding: 15px;
-            border-radius: 6px;
-            margin-bottom: 20px;
-            font-weight: 500;
-        }
+        .alert-box { display: none; padding: 15px; border-radius: 6px; margin-bottom: 20px; font-weight: 500; }
         .alert-success { background-color: #dcfce7; color: #15803d; border: 1px solid #86efac; }
         .alert-warning { background-color: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
-
-        @media print {
-            body { background: white; padding: 0; }
-            .container { box-shadow: none; border: none; max-width: 100%; padding: 0; }
-            .action-area, .status-badge, .btn-lock, .material-section { display: none !important; }
-            textarea.essay-input { border: none; border-bottom: 1px solid #000; border-radius: 0; }
-            .identity-card { background: none; border: 1px solid #000; }
-        }
     </style>
 </head>
 <body>
@@ -252,144 +46,52 @@
         <p>Informatika Kelas XI SMA/MA — Kurikulum Merdeka (Fase F)</p>
     </div>
 
-    <!-- BAGIAN MATERI PEMBELAJARAN BAB VI -->
     <div class="material-section">
         <h2>RINGKASAN MATERI: RUMUS STATISTIK SPREADSHEET & VISUALISASI GRAFIK</h2>
-        
-        <h3>6.1 Fungsi Statistik Utama dalam Spreadsheet</h3>
-        <p>Untuk mengolah data numerik secara cepat dan akurat, aplikasi pengolah angka menyediakan berbagai fungsi otomatis yang merangkum data dalam suatu rentang (range) sel[span_1](start_span)[span_1](end_span):</p>
+        <h3>6.1 Fungsi Statistik Utama</h3>
         <table class="material-table">
-            <thead>
-                <tr>
-                    <th>Fungsi Rumus</th>
-                    <th>Kegunaan & Perhitungan</th>
-                    <th>Contoh Penulisan</th>
-                </tr>
-            </thead>
+            <thead><tr><th>Fungsi Rumus</th><th>Kegunaan</th><th>Contoh Penulisan</th></tr></thead>
             <tbody>
-                <tr><td>`SUM`</td><td>Menjumlahkan seluruh nilai angka dalam rentang sel</td><td>`=SUM(B2:B20)`[span_2](start_span)[span_2](end_span)</td></tr>
-                <tr><td>`AVERAGE`</td><td>Mencari nilai rata-rata (mean) dari data</td><td>`=AVERAGE(B2:B20)`[span_3](start_span)[span_3](end_span)</td></tr>
-                <tr><td>`COUNT`</td><td>Menghitung banyaknya data (jumlah sel berisi angka)</td><td>`=COUNT(B2:B20)`[span_4](start_span)[span_4](end_span)</td></tr>
-                <tr><td>`MAX / MIN`</td><td>Mencari nilai tertinggi (maksimal) atau terendah</td><td>`=MAX(B2:B20)`[span_5](start_span)[span_5](end_span)</td></tr>
+                <tr><td>`SUM`</td><td>Menjumlahkan seluruh nilai angka</td><td>`=SUM(B2:B20)`[span_101](start_span)[span_101](end_span)</td></tr>
+                <tr><td>`AVERAGE`</td><td>Mencari nilai rata-rata (mean)</td><td>`=AVERAGE(B2:B20)`[span_102](start_span)[span_102](end_span)</td></tr>
+                <tr><td>`COUNT`</td><td>Menghitung banyaknya data sel berisi angka</td><td>`=COUNT(B2:B20)`[span_103](start_span)[span_103](end_span)</td></tr>
+                <tr><td>`MAX / MIN`</td><td>Mencari nilai tertinggi atau terendah</td><td>`=MAX(B2:B20)`[span_104](start_span)[span_104](end_span)</td></tr>
             </tbody>
         </table>
-
-        <h3>6.2 Praktik Visualisasi Data ke Grafik</h3>
-        <p>Visualisasi data adalah proses menerjemahkan tabel angka mentah menjadi bentuk grafis agar pola, tren, dan perbandingan antar data dapat dipahami dalam hitungan detik[span_6](start_span)[span_6](end_span).</p>
-        <ul>
-            <li><strong>Grafik Batang (Bar/Column Chart):</strong> Sangat cocok untuk membandingkan nilai antar kategori yang berbeda[span_7](start_span)[span_7](end_span).</li>
-            <li><strong>Grafik Garis (Line Chart):</strong> Digunakan untuk melihat tren atau perubahan data dari waktu ke waktu[span_8](start_span)[span_8](end_span).</li>
-            <li><strong>Grafik Lingkaran (Pie Chart):</strong> Menampilkan komposisi atau proporsi data terhadap keseluruhan total 100%[span_9](start_span)[span_9](end_span).</li>
-        </ul>
+        <h3>6.2 Visualisasi Grafik</h3>
+        <p>Grafik Batang (komparasi kategori), Grafik Garis (tren time series), dan Grafik Lingkaran (proporsi 100%)[span_105](start_span)[span_105](end_span).</p>
     </div>
 
-    <!-- BAGIAN UJIAN / UJI PEMAHAMAN (10 SOAL ESSAY) -->
     <div class="exam-section">
         <div class="header" style="border:none; margin-bottom:20px;">
             <h2 style="color:var(--primary-color);">UJI PEMAHAMAN ESSAY (10 SOAL)</h2>
-            <p>Jawablah 10 pertanyaan berikut secara mandiri dan kritis. Dilarang melakukan salin-tempel (copy-paste).</p>
+            <p>Jawablah 10 pertanyaan berikut secara mandiri dan kritis. Dilarang melakukan salin-tempel (copy-paste)[span_106](start_span)[span_106](end_span).</p>
         </div>
 
         <div id="statusAlert" class="alert-box"></div>
 
-        <!-- IDENTITAS SISWA -->
         <div class="identity-card">
             <h3>Identitas Peserta Didik</h3>
-            <div class="form-group">
-                <label for="studentName">Nama Lengkap Siswa:</label>
-                <input type="text" id="studentName" class="form-control" placeholder="Ketik nama lengkap Anda..." oninput="checkIdentityInputs()">
-            </div>
-            <div class="form-group">
-                <label for="studentClass">Kelas / Rombel:</label>
-                <input type="text" id="studentClass" class="form-control" placeholder="Contoh: XI IPA 1 / XI-F3" oninput="checkIdentityInputs()">
-            </div>
-            <div>
-                Status Identitas: 
-                <span id="lockBadge" class="status-badge badge-unlocked">Belum Terkunci</span>
-                <button type="button" class="btn-lock" id="btnManualLock" onclick="lockIdentity()" style="margin-left: 10px; cursor:pointer;" disabled>Kunci Identitas</button>
-            </div>
+            <div class="form-group"><label>Nama Lengkap Siswa:</label><input type="text" id="studentName" class="form-control" placeholder="Ketik nama..." oninput="checkIdentityInputs()"></div>
+            <div class="form-group"><label>Kelas / Rombel:</label><input type="text" id="studentClass" class="form-control" placeholder="Contoh: XI IPA 1" oninput="checkIdentityInputs()"></div>
+            <div>Status Identitas: <span id="lockBadge" class="status-badge badge-unlocked">Belum Terkunci</span> <button type="button" id="btnManualLock" onclick="lockIdentity()" style="margin-left: 10px; cursor:pointer;" disabled>Kunci Identitas</button></div>
         </div>
 
-        <!-- FORM 10 SOAL ESSAY -->
         <form id="quizForm">
-            <!-- Soal 1 -->
-            <div class="question-card">
-                <div class="question-title">1. Fungsi Rumus SUM:</div>
-                <p style="color: #475569; font-size: 0.95rem; margin-top:0;">Jelaskan bagaimana rumus `SUM` bekerja di dalam spreadsheet dan sebutkan keuntungan menggunakannya dibandingkan menjumlahkan sel satu per satu secara manual[span_10](start_span)[span_10](end_span).</p>
-                <textarea class="essay-input" name="q1" placeholder="Tuliskan jawaban Anda..." required></textarea>
-            </div>
+            <div class="question-card"><div class="question-title">1. Fungsi Rumus SUM:</div><p style="color: #475569; font-size: 0.95rem;">Jelaskan bagaimana rumus `SUM` bekerja dan keuntungannya dibanding penjumlahan manual[span_107](start_span)[span_107](end_span).</p><textarea class="essay-input" name="q1" placeholder="Tuliskan jawaban Anda..." required></textarea></div>
+            <div class="question-card"><div class="question-title">2. Perhitungan Banyak Data (COUNT):</div><p style="color: #475569; font-size: 0.95rem;">Apa perbedaan fungsi `COUNT` dengan penjumlahan biasa? Kapan fungsi ini diperlukan[span_108](start_span)[span_108](end_span)?</p><textarea class="essay-input" name="q2" placeholder="Tuliskan jawaban Anda..." required></textarea></div>
+            <div class="question-card"><div class="question-title">3. Penerapan Rumus AVERAGE (Mean):</div><p style="color: #475569; font-size: 0.95rem;">Bagaimana penulisan rumus rata-rata untuk data nilai di rentang sel `C2` sampai `C25`[span_109](start_span)[span_109](end_span)?</p><textarea class="essay-input" name="q3" placeholder="Tuliskan jawaban Anda..." required></textarea></div>
+            <div class="question-card"><div class="question-title">4. Fungsi MAX dan MIN:</div><p style="color: #475569; font-size: 0.95rem;">Jelaskan bagaimana fungsi `MAX` dan `MIN` membantu menemukan batas atas dan bawah data[span_110](start_span)[span_110](end_span).</p><textarea class="essay-input" name="q4" placeholder="Tuliskan jawaban Anda..." required></textarea></div>
+            <div class="question-card"><div class="question-title">5. Esensi Visualisasi Data:</div><p style="color: #475569; font-size: 0.95rem;">Mengapa data tabel angka sulit dicerna dengan cepat dan bagaimana grafik mempermudahnya[span_111](start_span)[span_111](end_span)?</p><textarea class="essay-input" name="q5" placeholder="Tuliskan jawaban Anda..." required></textarea></div>
+            <div class="question-card"><div class="question-title">6. Pemilihan Grafik Batang (Bar/Column Chart):</div><p style="color: #475569; font-size: 0.95rem;">Kapan waktu paling tepat untuk memilih menggunakan grafik batang? Berikan contohnya[span_112](start_span)[span_112](end_span).</p><textarea class="essay-input" name="q6" placeholder="Tuliskan jawaban Anda..." required></textarea></div>
+            <div class="question-card"><div class="question-title">7. Penggunaan Grafik Garis (Line Chart):</div><p style="color: #475569; font-size: 0.95rem;">Mengapa grafik garis menjadi pilihan utama memvisualisasikan data tren waktu (time series)[span_113](start_span)[span_113](end_span)?</p><textarea class="essay-input" name="q7" placeholder="Tuliskan jawaban Anda..." required></textarea></div>
+            <div class="question-card"><div class="question-title">8. Karakteristik Grafik Lingkaran (Pie Chart):</div><p style="color: #475569; font-size: 0.95rem;">Jelaskan aturan penggunaan grafik lingkaran dan batasan jika terlalu banyak kategori data[span_114](start_span)[span_114](end_span).</p><textarea class="essay-input" name="q8" placeholder="Tuliskan jawaban Anda..." required></textarea></div>
+            <div class="question-card"><div class="question-title">9. Studi Kasus Pengolahan Nilai & Grafik:</div><p style="color: #475569; font-size: 0.95rem;">Jika Anda memiliki data rekapitulasi nilai 5 mapel, jelaskan langkah membuat grafik batang[span_115](start_span)[span_115](end_span)!</p><textarea class="essay-input" name="q9" placeholder="Tuliskan jawaban Anda..." required></textarea></div>
+            <div class="question-card"><div class="question-title">10. Evaluasi Etika Visualisasi Grafik:</div><p style="color: #475569; font-size: 0.95rem;">Mengapa pembuatan grafik yang manipulatif dapat menyesatkan orang yang melihatnya[span_116](start_span)[span_116](end_span)?</p><textarea class="essay-input" name="q10" placeholder="Tuliskan jawaban Anda..." required></textarea></div>
 
-            <!-- Soal 2 -->
-            <div class="question-card">
-                <div class="question-title">2. Perhitungan Banyak Data (COUNT):</div>
-                <p style="color: #475569; font-size: 0.95rem; margin-top:0;">Apa perbedaan fungsi `COUNT` dengan penjumlahan biasa? Kapan seorang analis data memerlukan fungsi ini dalam pengolahan laporan[span_11](start_span)[span_11](end_span)?</p>
-                <textarea class="essay-input" name="q2" placeholder="Tuliskan jawaban Anda..." required></textarea>
-            </div>
-
-            <!-- Soal 3 -->
-            <div class="question-card">
-                <div class="question-title">3. Penerapan Rumus AVERAGE (Mean):</div>
-                <p style="color: #475569; font-size: 0.95rem; margin-top:0;">Bagaimana cara menuliskan rumus rata-rata untuk data nilai yang terletak pada rentang sel `C2` sampai dengan `C25` di dalam spreadsheet[span_12](start_span)[span_12](end_span)?</p>
-                <textarea class="essay-input" name="q3" placeholder="Tuliskan jawaban Anda..." required></textarea>
-            </div>
-
-            <!-- Soal 4 -->
-            <div class="question-card">
-                <div class="question-title">4. Fungsi MAX dan MIN:</div>
-                <p style="color: #475569; font-size: 0.95rem; margin-top:0;">Jelaskan bagaimana fungsi `MAX` dan `MIN` membantu analis data dalam menemukan batas atas serta batas bawah dari sekumpulan data numerik secara instan[span_13](start_span)[span_13](end_span).</p>
-                <textarea class="essay-input" name="q4" placeholder="Tuliskan jawaban Anda..." required></textarea>
-            </div>
-
-            <!-- Soal 5 -->
-            <div class="question-card">
-                <div class="question-title">5. Esensi Visualisasi Data:</div>
-                <p style="color: #475569; font-size: 0.95rem; margin-top:0;">Mengapa data angka dalam bentuk tabel terkadang sulit dicerna dengan cepat, dan bagaimana grafik atau diagram mampu mempermudah pemahaman manusia[span_14](start_span)[span_14](end_span)?</p>
-                <textarea class="essay-input" name="q5" placeholder="Tuliskan jawaban Anda..." required></textarea>
-            </div>
-
-            <!-- Soal 6 -->
-            <div class="question-card">
-                <div class="question-title">6. Pemilihan Grafik Batang (Bar/Column Chart):</div>
-                <p style="color: #475569; font-size: 0.95rem; margin-top:0;">Kapan waktu yang paling tepat bagi seorang analis data untuk memilih menggunakan grafik batang (column/bar chart)? Berikan contoh kasusnya[span_15](start_span)[span_15](end_span).</p>
-                <textarea class="essay-input" name="q6" placeholder="Tuliskan jawaban Anda..." required></textarea>
-            </div>
-
-            <!-- Soal 7 -->
-            <div class="question-card">
-                <div class="question-title">7. Penggunaan Grafik Garis (Line Chart):</div>
-                <p style="color: #475569; font-size: 0.95rem; margin-top:0;">Mengapa grafik garis menjadi pilihan utama dalam memvisualisasikan data tren waktu (time series), seperti fluktuasi harga saham atau suhu harian[span_16](start_span)[span_16](end_span)?</p>
-                <textarea class="essay-input" name="q7" placeholder="Tuliskan jawaban Anda..." required></textarea>
-            </div>
-
-            <!-- Soal 8 -->
-            <div class="question-card">
-                <div class="question-title">8. Karakteristik Grafik Lingkaran (Pie Chart):</div>
-                <p style="color: #475569; font-size: 0.95rem; margin-top:0;">Jelaskan aturan penggunaan grafik lingkaran (*pie chart*) dan sebutkan batasan atau kelemahan jika grafik ini digunakan untuk terlalu banyak kategori data[span_17](start_span)[span_17](end_span).</p>
-                <textarea class="essay-input" name="q8" placeholder="Tuliskan jawaban Anda..." required></textarea>
-            </div>
-
-            <!-- Soal 9 -->
-            <div class="question-card">
-                <div class="question-title">9. Studi Kasus Pengolahan Nilai & Grafik:</div>
-                <p style="color: #475569; font-size: 0.95rem; margin-top:0;">Jika Anda memiliki data rekapitulasi nilai rata-rata 5 mata pelajaran, jelaskan langkah-langkah ringkas membuat grafik batang menggunakan spreadsheet[span_18](start_span)[span_18](end_span)!</p>
-                <textarea class="essay-input" name="q9" placeholder="Tuliskan jawaban Anda..." required></textarea>
-            </div>
-
-            <!-- Soal 10 -->
-            <div class="question-card">
-                <div class="question-title">10. Evaluasi Etika Visualisasi Grafik:</div>
-                <p style="color: #475569; font-size: 0.95rem; margin-top:0;">Mengapa pembuatan grafik yang salah atau manipulatif (misalnya skala sumbu Y tidak dimulai dari angka nol) dapat menyesatkan orang yang melihatnya[span_19](start_span)[span_19](end_span)?</p>
-                <textarea class="essay-input" name="q10" placeholder="Tuliskan jawaban Anda..." required></textarea>
-            </div>
-
-            <!-- TOMBOL AKSI -->
             <div class="action-area">
-                <button type="button" class="btn btn-primary" onclick="generatePDF()">
-                    💾 Download PDF Ujian
-                </button>
-                <button type="button" class="btn btn-success" onclick="submitToDrive()">
-                    🚀 Kirim ke Google Drive
-                </button>
+                <button type="button" class="btn btn-primary" onclick="generatePDF()">💾 Download PDF Ujian</button>
+                <button type="button" class="btn btn-success" onclick="submitToDrive()">🚀 Kirim ke Google Drive</button>
             </div>
         </form>
     </div>
@@ -397,134 +99,76 @@
 
 <script>
     let isIdentityLocked = false;
-    // URL GOOGLE APPS SCRIPT WEB APP ANDA
     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz8YC9A1GTbds-hstQUFd46VHlJP-vNcR-MEDvPmYDlh4v_0s7i6xIKGPzkW27e8IEXuQ/exec"; 
 
-    // --- PROTEKSI ANTI COPY-PASTE & DRAG PADA AREA UJIAN ---
-    document.addEventListener('copy', (e) => e.preventDefault());
-    document.addEventListener('paste', (e) => e.preventDefault());
-    document.addEventListener('cut', (e) => e.preventDefault());
-    document.addEventListener('contextmenu', (e) => e.preventDefault());
-    document.addEventListener('dragstart', (e) => e.preventDefault());
+    document.addEventListener('copy', e => e.preventDefault());
+    document.addEventListener('paste', e => e.preventDefault());
+    document.addEventListener('cut', e => e.preventDefault());
+    document.addEventListener('contextmenu', e => e.preventDefault());
+    document.addEventListener('dragstart', e => e.preventDefault());
 
-    // --- MANAJEMEN KUNCI IDENTITAS ---
     function checkIdentityInputs() {
         const name = document.getElementById('studentName').value.trim();
         const studentClass = document.getElementById('studentClass').value.trim();
-        const btnLock = document.getElementById('btnManualLock');
-        btnLock.disabled = !(name && studentClass);
+        document.getElementById('btnManualLock').disabled = !(name && studentClass);
     }
 
     function lockIdentity() {
         const nameInput = document.getElementById('studentName');
         const classInput = document.getElementById('studentClass');
-
-        if (!nameInput.value.trim() || !classInput.value.trim()) {
-            showAlert('Mohon isi Nama Lengkap dan Kelas sebelum melanjutkan!', 'warning');
-            return false;
-        }
-
+        if (!nameInput.value.trim() || !classInput.value.trim()) { showAlert('Isi Nama dan Kelas!', 'warning'); return false; }
         if (!isIdentityLocked) {
-            nameInput.disabled = true;
-            classInput.disabled = true;
-            isIdentityLocked = true;
-
-            const badge = document.getElementById('lockBadge');
-            badge.textContent = "Terkunci Otomatis";
-            badge.className = "status-badge badge-locked";
+            nameInput.disabled = true; classInput.disabled = true; isIdentityLocked = true;
+            document.getElementById('lockBadge').textContent = "Terkunci Otomatis";
+            document.getElementById('lockBadge').className = "status-badge badge-locked";
             document.getElementById('btnManualLock').style.display = 'none';
         }
         return true;
     }
 
-    // Otomatis kunci identitas saat siswa mulai mengetik jawaban essay pertama kali
-    document.querySelectorAll('.essay-input').forEach(textarea => {
-        textarea.addEventListener('focus', () => {
-            if (!isIdentityLocked) {
-                const locked = lockIdentity();
-                if (!locked) {
-                    textarea.blur();
-                }
-            }
-        });
-    });
+    document.querySelectorAll('.essay-input').forEach(ta => { ta.addEventListener('focus', () => { if (!isIdentityLocked) lockIdentity(); }); });
 
-    // --- HELPER ALERT ---
-    function showAlert(message, type) {
-        const alertBox = document.getElementById('statusAlert');
-        alertBox.style.display = 'block';
-        alertBox.textContent = message;
-        alertBox.className = type === 'success' ? 'alert-box alert-success' : 'alert-box alert-warning';
-        window.scrollTo({ top: alertBox.offsetTop - 50, behavior: 'smooth' });
+    function showAlert(msg, type) {
+        const box = document.getElementById('statusAlert');
+        box.style.display = 'block'; box.textContent = msg;
+        box.className = type === 'success' ? 'alert-box alert-success' : 'alert-box alert-warning';
+        window.scrollTo({ top: box.offsetTop - 50, behavior: 'smooth' });
     }
 
-    // --- DOWNLOAD / CETAK PDF (Format nama file: nama_siswa|kelas|tugas bab 6.pdf) ---
     function generatePDF() {
         const name = document.getElementById('studentName').value.trim();
         const studentClass = document.getElementById('studentClass').value.trim();
-
-        if (!name || !studentClass) {
-            showAlert('Lengkapi Nama dan Kelas sebelum mengunduh PDF!', 'warning');
-            return;
-        }
-
-        const formattedTitle = `${name}|${studentClass}|Tugas Bab 6`;
-        const originalTitle = document.title;
-        document.title = formattedTitle;
-
-        window.print();
-
-        document.title = originalTitle;
+        if (!name || !studentClass) { showAlert('Lengkapi Nama dan Kelas!', 'warning'); return; }
+        const element = document.querySelector('.container');
+        const opt = { margin: 10, filename: `${name}|${studentClass}|tugas bab 6.pdf`, image: { type: 'jpeg', quality: 0.98 }, html2canvas: { scale: 2 }, jsPDF: { unit: 'mm', format: 'a4' } };
+        html2pdf().from(element).set(opt).save();
     }
 
-    // --- PENGIRIMAN OTOMATIS KE GOOGLE DRIVE & SHEETS ---
     async function submitToDrive() {
         const name = document.getElementById('studentName').value.trim();
         const studentClass = document.getElementById('studentClass').value.trim();
+        if (!name || !studentClass) { showAlert('Isi identitas terlebih dahulu!', 'warning'); return; }
 
-        if (!name || !studentClass) {
-            showAlert('Isi identitas Nama dan Kelas terlebih dahulu!', 'warning');
-            return;
-        }
-
-        let answers = {};
-        let allFilled = true;
+        let answers = {}; let allFilled = true;
         for (let i = 1; i <= 10; i++) {
             let val = document.querySelector(`textarea[name="q${i}"]`).value.trim();
             if (!val) allFilled = false;
             answers[`soal${i}`] = val;
         }
+        if (!allFilled) { showAlert('Semua soal wajib diisi!', 'warning'); return; }
 
-        if (!allFilled) {
-            showAlert('Semua dari 10 soal essay wajib diisi sebelum dikirim!', 'warning');
-            return;
-        }
+        showAlert('Sedang mengirim data teks & PDF ke Google Drive...', 'success');
+        const element = document.querySelector('.container');
+        const opt = { margin: 10, filename: `${name}|${studentClass}|tugas bab 6.pdf`, image: { type: 'jpeg', quality: 0.98 }, html2canvas: { scale: 2 }, jsPDF: { unit: 'mm', format: 'a4' } };
 
-        const payload = {
-            fileName: `${name}|${studentClass}|Tugas Bab 6`,
-            nama: name,
-            kelas: studentClass,
-            jawaban: answers,
-            waktuKirim: new Date().toLocaleString('id-ID')
-        };
-
-        showAlert('Sedang mengirim jawaban ke Google Drive & Spreadsheet...', 'success');
-
-        try {
-            await fetch(GOOGLE_SCRIPT_URL, {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
-            });
-
-            showAlert('✅ Jawaban berhasil terkirim ke Google Drive Pengajar!', 'success');
-        } catch (error) {
-            console.error(error);
-            showAlert('⚠️ Terjadi kendala koneksi saat pengiriman otomatis. Silakan gunakan tombol "Download PDF" sebagai alternatif!', 'warning');
-        }
+        html2pdf().from(element).set(opt).outputPdf('datauristring').then(async function(pdfBase64) {
+            const payload = { fileName: `${name}|${studentClass}|tugas bab 6`, nama: name, kelas: studentClass, jawaban: answers, waktuKirim: new Date().toLocaleString('id-ID'), pdfBase64: pdfBase64 };
+            try {
+                await fetch(GOOGLE_SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+                showAlert('✅ Jawaban teks & PDF berhasil terkirim ke Google Drive!', 'success');
+            } catch (err) { showAlert('⚠️ Kendala koneksi pengiriman.', 'warning'); }
+        });
     }
 </script>
-
 </body>
 </html>
