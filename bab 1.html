@@ -243,11 +243,12 @@
         }
         const element = document.querySelector('.container');
         const opt = {
-            margin: 10,
-            filename: `${name}|${studentClass}|tugas bab 1.pdf`,
-            image: { type: 'jpeg', quality: 0.85 },
-            html2canvas: { scale: 1.5, useCORS: true },
-            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            margin:       [10, 10, 10, 10],
+            filename:     `${name}|${studentClass}|tugas bab 1.pdf`,
+            image:        { type: 'jpeg', quality: 0.92 },
+            html2canvas:  { scale: 2, useCORS: true, letterRendering: true },
+            jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
+            pagebreak:    { mode: ['avoid-all', 'css', 'legacy'] }
         };
         html2pdf().from(element).set(opt).save();
     }
@@ -277,11 +278,12 @@
 
         const element = document.querySelector('.container');
         const opt = {
-            margin: 10,
-            filename: `${name}|${studentClass}|tugas bab 1.pdf`,
-            image: { type: 'jpeg', quality: 0.85 },
-            html2canvas: { scale: 1.5, useCORS: true },
-            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            margin:       [10, 10, 10, 10],
+            filename:     `${name}|${studentClass}|tugas bab 1.pdf`,
+            image:        { type: 'jpeg', quality: 0.92 },
+            html2canvas:  { scale: 2, useCORS: true, letterRendering: true },
+            jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
+            pagebreak:    { mode: ['avoid-all', 'css', 'legacy'] }
         };
 
         html2pdf().from(element).set(opt).outputPdf('datauristring').then(async function(pdfBase64) {
